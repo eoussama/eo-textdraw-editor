@@ -1,10 +1,11 @@
+import { Position } from '../position/position';
 import { Element, IElement } from './element';
 
 export interface IBoxElement extends IElement {
   color: string;
 }
 
-export class BoxElement extends Element {
+export class BoxElement extends Element implements IBoxElement {
 
   //#region Properties
 

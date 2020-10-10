@@ -2,24 +2,26 @@ import { Position } from '../position/position';
 import { Dimension } from '../dimension/dimension';
 
 export interface IElement {
-  position: Position;
   dimension: Dimension;
+  position: Position;
 }
 
-export class Element {
+export class Element implements IElement {
 
   //#region Properties
 
-  position: Position;
   dimension: Dimension;
+  position: Position;
+  initialPos: Position;
 
   //#endregion
 
   //#region Lifecycle
 
   constructor(element: IElement) {
-    this.position = { ...(element?.position ?? new Position()) };
     this.dimension = { ...(element?.dimension ?? new Dimension()) };
+    this.position = { ...(element?.position ?? new Position()) };
+    this.initialPos = { ...this.position };
   }
 
   //#endregion

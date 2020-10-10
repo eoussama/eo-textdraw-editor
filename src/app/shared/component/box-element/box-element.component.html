@@ -10,6 +10,7 @@
   [enableGhostResize]="true"
   [resizeEdges]="getResizeEdges()"
   [cdkDragDisabled]="!drag"
+  [cdkDragFreeDragPosition]="element?.position"
   (cdkDragStarted)="onDragStart()"
   (cdkDragMoved)="onDrag($event)"
   (cdkDragEnded)="onDragEnd()"

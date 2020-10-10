@@ -25,8 +25,6 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.elements.push(new BoxElement());
-    this.elements.push(new BoxElement({ color: 'red', position: new Position({ x: 40, y: 80 }) }));
-
     this.centerElement(this.elements[0]);
   }
 
@@ -34,6 +32,10 @@ export class BoardComponent implements OnInit {
 
   //#region Methods
 
+  /**
+   * Centers an element on the board
+   * @param element The element to center
+   */
   centerElement(element: Element): void {
     element.position.x = (this.dimension.width / 2) - (element.dimension.width / 2);
     element.position.y = (this.dimension.height / 2) - (element.dimension.height / 2);
