@@ -14,6 +14,7 @@ export class ElementComponent implements OnInit, AfterViewInit {
 
   active = false;
   hovered = false;
+  dragging = false;
 
   @Input() position: Position;
   @Input() dimension: Dimension;
@@ -38,12 +39,20 @@ export class ElementComponent implements OnInit, AfterViewInit {
 
   //#region Events
 
+  onDragStarted(): void {
+    this.dragging = true;
+  }
+
   onDragging(e: any): void {
     const parentRect = e?.source?.element?.nativeElement?.parentElement?.parentElement?.getClientRects()?.item(0);
     const rect = e?.source?.element?.nativeElement?.getClientRects()?.item(0);
 
     this.position.x = rect.x - parentRect.x;
     this.position.y = rect.y - parentRect.y;
+  }
+
+  onDragEnded(): void {
+    this.dragging = false;
   }
 
   @HostListener('mouseenter')
@@ -61,6 +70,10 @@ export class ElementComponent implements OnInit, AfterViewInit {
   //#region Methods
 
   getPositionLabel = () => `(x: ${this.position?.x}, y: ${this.position?.y})`;
+
+  isActive = () => this.active || this.dragging;
+
+  showHead = () => this.isActive() || this.hovered;
 
   //#endregion
 }

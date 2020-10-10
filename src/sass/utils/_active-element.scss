@@ -5,6 +5,7 @@
   transition-duration: 0.2s;
   transition-property: outline-color;
 
+  &.element--active,
   &:hover {
     outline: 2px dotted grey;
     outline-offset: 4px;

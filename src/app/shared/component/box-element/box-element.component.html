@@ -2,14 +2,16 @@
   cdkDrag
   cdkDragBoundary=".canvas"
   class="element element--box"
+  [ngClass]="{ 'element--active': isActive() }"
   [style.height.px]="dimension?.height"
   [style.width.px]="dimension?.width"
-  (cdkDragMoved)="onDragging($event)">
-  <div *ngIf="hovered || active"
+  (cdkDragStarted)="onDragStarted()"
+  (cdkDragMoved)="onDragging($event)"
+  (cdkDragEnded)="onDragEnded()">
+  <div *ngIf="showHead()"
     class="element__head"
     [@fade]>
-    <div *ngIf="hovered || active"
-      class="element__position">
+    <div class="element__position">
       <span>{{ getPositionLabel() }}</span>
     </div>
   </div>
