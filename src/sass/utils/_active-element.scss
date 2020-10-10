@@ -4,8 +4,28 @@
   transition-duration: 0.2s;
   transition-property: outline-color;
 
+  &::before {
+    opacity: 0;
+
+    transition-duration: 2s;
+    transition-property: opacity;
+  }
+
   &:hover {
     outline: 2px dotted grey;
     outline-offset: 4px;
+
+    &::before {
+      content: attr(data-label);
+      opacity: 1;
+
+      position: absolute;
+      left: -8px;
+      top: -25px;
+
+      color: #585858;
+      font-size: 12px;
+      font-style: italic;
+    }
   }
 }

@@ -24,4 +24,10 @@ export class ElementComponent implements OnInit {
   ngOnInit(): void { }
 
   //#endregion
+
+  //#region Methods
+
+  getPositionLabel = () => `(x: ${this.position?.x}, y: ${this.position?.y})`;
+
+  //#endregion
 }
