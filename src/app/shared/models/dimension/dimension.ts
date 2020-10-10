@@ -1,5 +1,3 @@
-import { getRatio } from '../../utils/_utils';
-
 export interface IDimension {
   height: number;
   width: number;
@@ -17,10 +15,8 @@ export class Dimension implements IDimension {
   //#region Lifecycle
 
   constructor(dimension?: IDimension) {
-    // this.height = getRatio(dimension?.height ?? 0);
-    // this.width = getRatio(dimension?.width ?? 0);
-    this.height = dimension?.height ?? 0;
-    this.width = dimension?.width ?? 0;
+    this.height = dimension?.height ?? 100;
+    this.width = dimension?.width ?? 150;
   }
 
   //#endregion

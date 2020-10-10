@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Dimension } from '../../models/dimension/dimension';
-import { Position } from '../../models/position/position';
+import { Element } from '../../models/elements/element';
 
 @Component({
   selector: 'app-element',
@@ -15,10 +14,8 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
   hovered = false;
   dragging = false;
 
-  @Input() position: Position;
-  @Input() dimension: Dimension;
-
-  @ViewChild('element') element: ElementRef;
+  @Input() element: Element;
+  @ViewChild('elementRef') elementRef: ElementRef;
 
   //#endregion
 
@@ -29,7 +26,10 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {
-    this.element?.nativeElement?.style.setProperty('transform', `translate3d(${this.position.x}px, ${this.position.y}px, 0px)`);
+    const x = this.element?.position?.x;
+    const y = this.element?.position?.y;
+
+    this.elementRef?.nativeElement?.style.setProperty('transform', `translate3d(${x}px, ${y}px, 0px)`);
   }
 
   ngOnDestroy(): void { }
@@ -48,8 +48,8 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
     const parentRect = e?.source?.element?.nativeElement?.parentElement?.parentElement?.getClientRects()?.item(0);
     const rect = e?.source?.element?.nativeElement?.getClientRects()?.item(0);
 
-    this.position.x = rect.x - parentRect.x;
-    this.position.y = rect.y - parentRect.y;
+    this.element.position.x = rect.x - parentRect.x;
+    this.element.position.y = rect.y - parentRect.y;
   }
 
   onDragEnded(): void {
@@ -59,7 +59,7 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('document:click', ['$event'])
   onClicked(e: MouseEvent): void {
-    this.active = this.element?.nativeElement.contains(e.target);
+    this.active = this.elementRef?.nativeElement.contains(e.target);
   }
 
   @HostListener('mouseenter')
@@ -76,7 +76,11 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //#region Methods
 
-  getPositionLabel = () => `(x: ${this.position?.x}, y: ${this.position?.y})`;
+  getHeight = () => this.element?.dimension?.height;
+
+  getWidth = () => this.element?.dimension?.width;
+
+  getPositionLabel = () => `(x: ${this.element?.position?.x}, y: ${this.element?.position?.y})`;
 
   isActive = () => this.active || this.dragging;
 

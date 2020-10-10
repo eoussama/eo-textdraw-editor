@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Dimension } from '../../models/dimension/dimension';
+import { BoxElement } from '../../models/elements/box-element';
+import { Element } from '../../models/elements/element';
 import { Position } from '../../models/position/position';
 
 @Component({
@@ -11,8 +13,7 @@ export class BoardComponent implements OnInit {
 
   //#region Properties
 
-  dim = new Dimension({ height: 100, width: 230 });
-  pos = new Position({ x: 150, y: 100 });
+  elements: Element[] = [];
 
   @Input() dimension: Dimension;
 
@@ -22,7 +23,21 @@ export class BoardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.elements.push(new BoxElement());
+    this.elements.push(new BoxElement({ color: 'red' }));
+
+    this.centerElement(this.elements[0]);
+  }
+
+  //#endregion
+
+  //#region Methods
+
+  centerElement(element: Element): void {
+    element.position.x = (this.dimension.width / 2) - (element.dimension.width / 2);
+    element.position.y = (this.dimension.height / 2) - (element.dimension.height / 2);
+  }
 
   //#endregion
 }

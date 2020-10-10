@@ -1,10 +1,10 @@
-<div #element
+<div #elementRef
   cdkDrag
   cdkDragBoundary=".canvas"
   class="element element--box"
   [ngClass]="{ 'element--active': isActive() }"
-  [style.height.px]="dimension?.height"
-  [style.width.px]="dimension?.width"
+  [style.height.px]="getHeight()"
+  [style.width.px]="getWidth()"
   (cdkDragStarted)="onDragStarted()"
   (cdkDragMoved)="onDragging($event)"
   (cdkDragEnded)="onDragEnded()">

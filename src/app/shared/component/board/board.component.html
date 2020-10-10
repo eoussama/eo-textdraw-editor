@@ -2,9 +2,7 @@
   <div class="canvas"
     [style.min-height.px]="dimension?.height"
     [style.min-width.px]="dimension?.width">
-    <app-box-element [position]="pos"
-      [dimension]="dim"></app-box-element>
-    <app-box-element [position]="{x: pos.x - 30, y: pos.y * 1.2}"
-      [dimension]="dim"></app-box-element>
+    <app-box-element *ngFor="let element of elements"
+      [element]="element"></app-box-element>
   </div>
 </div>
