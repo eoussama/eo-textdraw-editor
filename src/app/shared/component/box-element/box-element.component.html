@@ -1,4 +1,5 @@
 <div #elementRef
+  mwlResizable
   cdkDrag
   cdkDragBoundary=".canvas"
   class="element element--box"
@@ -6,14 +7,29 @@
   [style.height.px]="getHeight()"
   [style.width.px]="getWidth()"
   [style.backgroundColor]="getColor()"
-  (cdkDragStarted)="onDragStarted()"
-  (cdkDragMoved)="onDragging($event)"
-  (cdkDragEnded)="onDragEnded()">
+  [enableGhostResize]="true"
+  [resizeEdges]="getResizeEdges()"
+  [cdkDragDisabled]="!drag"
+  (cdkDragStarted)="onDragStart()"
+  (cdkDragMoved)="onDrag($event)"
+  (cdkDragEnded)="onDragEnd()"
+  (resizeStart)="onResizeStart($event)"
+  (resize)="onResizeStart($event)"
+  (resizeEnd)="onResizeEnd($event)">
+
+  <!-- Head -->
   <div *ngIf="showHead()"
     class="element__head"
     [@fade]>
+
+    <!-- Position -->
     <div class="element__position">
       <span>{{ getPositionLabel() }}</span>
     </div>
   </div>
+
+  <!--  Hitbox -->
+  <div class="hitbox"
+    (mouseenter)="onDragActive()"
+    (mouseleave)="onDragDisactive()"></div>
 </div>

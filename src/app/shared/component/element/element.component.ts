@@ -12,6 +12,8 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
 
   active = false;
   hovered = false;
+
+  drag = true;
   dragging = false;
 
   @Input() element: Element;
@@ -38,12 +40,12 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //#region Events
 
-  onDragStarted(): void {
+  onDragStart(): void {
     this.dragging = true;
     this.active = true;
   }
 
-  onDragging(e: any): void {
+  onDrag(e: any): void {
     document.documentElement.click();
     const parentRect = e?.source?.element?.nativeElement?.parentElement?.parentElement?.getClientRects()?.item(0);
     const rect = e?.source?.element?.nativeElement?.getClientRects()?.item(0);
@@ -52,13 +54,13 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
     this.element.position.y = rect.y - parentRect.y;
   }
 
-  onDragEnded(): void {
+  onDragEnd(): void {
     this.dragging = false;
     this.active = true;
   }
 
   @HostListener('document:click', ['$event'])
-  onClicked(e: MouseEvent): void {
+  onClick(e: MouseEvent): void {
     this.active = this.elementRef?.nativeElement.contains(e.target);
   }
 
