@@ -16,7 +16,7 @@ export class Dimension implements IDimension {
 
   //#region Lifecycle
 
-  constructor(dimension: IDimension) {
+  constructor(dimension?: IDimension) {
     this.height = dimension?.height ?? 0;
     this.width = dimension?.width ?? 0;
   }

@@ -14,7 +14,7 @@ export class Position implements IPosition {
 
   //#region Lifecycle
 
-  constructor(position: IPosition) {
+  constructor(position?: IPosition) {
     this.x = position?.x ?? 0;
     this.y = position?.y ?? 0;
   }
