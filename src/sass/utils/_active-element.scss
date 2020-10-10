@@ -9,5 +9,7 @@
   &:hover {
     outline: 2px dotted grey;
     outline-offset: 4px;
+
+    z-index: 10;
   }
 }

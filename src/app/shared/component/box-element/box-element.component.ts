@@ -1,7 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { fadeAnimation } from '../../animations/fade.animation';
 import { Dimension } from '../../models/dimension/dimension';
+import { BoxElement } from '../../models/elements/box-element';
 import { Position } from '../../models/position/position';
 import { ElementComponent } from '../element/element.component';
 
@@ -18,8 +19,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit {
 
   //#region Properties
 
-  dim = new Dimension({ height: 100, width: 230 });
-  pos = new Position({ x: 150, y: 100 });
+  @Input() element: BoxElement;
 
   //#endregion
 
@@ -32,6 +32,12 @@ export class BoxElementComponent extends ElementComponent implements OnInit {
   ngOnInit(): void {
     super.ngOnInit();
   }
+
+  //#endregion
+
+  //#region Methods
+
+  getColor = () => this.element?.color;
 
   //#endregion
 }

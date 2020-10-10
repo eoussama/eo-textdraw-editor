@@ -5,6 +5,7 @@
   [ngClass]="{ 'element--active': isActive() }"
   [style.height.px]="getHeight()"
   [style.width.px]="getWidth()"
+  [style.backgroundColor]="getColor()"
   (cdkDragStarted)="onDragStarted()"
   (cdkDragMoved)="onDragging($event)"
   (cdkDragEnded)="onDragEnded()">

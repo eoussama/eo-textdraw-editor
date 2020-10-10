@@ -25,7 +25,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.elements.push(new BoxElement());
-    this.elements.push(new BoxElement({ color: 'red' }));
+    this.elements.push(new BoxElement({ color: 'red', position: new Position({ x: 40, y: 80 }) }));
 
     this.centerElement(this.elements[0]);
   }
