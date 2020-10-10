@@ -8,9 +8,8 @@ import { ElementComponent } from './element.component';
 @NgModule({
   declarations: [ElementComponent],
   imports: [
-    CommonModule,
-    DragDropModule
+    CommonModule
   ],
-  exports: [ElementComponent]
+  exports: [DragDropModule, ElementComponent]
 })
 export class ElementModule { }

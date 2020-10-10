@@ -1,8 +1,0 @@
-<div #element
-  cdkDrag
-  cdkDragBoundary=".canvas"
-  class="element"
-  [style.height.px]="dimension?.height"
-  [style.width.px]="dimension?.width"
-  [attr.data-label]="getPositionLabel()"
-  (cdkDragMoved)="onDragging($event)"></div>

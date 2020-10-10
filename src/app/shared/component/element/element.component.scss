@@ -2,8 +2,6 @@
 
 .element {
   cursor: pointer;
-  background-color: #0000005c;
-
   position: absolute;
 
   @include activeElement;

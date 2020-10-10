@@ -23,7 +23,9 @@ export class ElementComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log('ddd');
+  }
 
   ngAfterViewInit(): void {
     this.element?.nativeElement?.style.setProperty('transform', `translate3d(${this.position.x}px, ${this.position.y}px, 0px)`);
