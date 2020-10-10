@@ -4,5 +4,13 @@
   class="element element--box"
   [style.height.px]="dimension?.height"
   [style.width.px]="dimension?.width"
-  [attr.data-label]="getPositionLabel()"
-  (cdkDragMoved)="onDragging($event)"></div>
+  (cdkDragMoved)="onDragging($event)">
+  <div *ngIf="hovered || active"
+    class="element__head"
+    [@fade]>
+    <div *ngIf="hovered || active"
+      class="element__position">
+      <span>{{ getPositionLabel() }}</span>
+    </div>
+  </div>
+</div>

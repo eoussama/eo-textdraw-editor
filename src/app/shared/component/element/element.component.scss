@@ -5,4 +5,27 @@
   position: absolute;
 
   @include activeElement;
+
+  &__head {
+    pointer-events: none;
+
+    position: relative;
+    top: -30px;
+
+    margin-left: -6px;
+    width: calc(100% + 6px);
+  }
+
+  &__position {
+    display: inline-block;
+
+    padding: 2px 4px;
+    border-radius: 5px;
+
+    background-color: white;
+    color: #202020;
+
+    font-size: 12px;
+    font-style: italic;
+  }
 }

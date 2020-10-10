@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { Dimension } from '../../models/dimension/dimension';
 import { Position } from '../../models/position/position';
 import { getRatio } from '../../utils/_utils';
@@ -11,6 +11,9 @@ import { getRatio } from '../../utils/_utils';
 export class ElementComponent implements OnInit, AfterViewInit {
 
   //#region Properties
+
+  active = false;
+  hovered = false;
 
   @Input() position: Position;
   @Input() dimension: Dimension;
@@ -41,6 +44,16 @@ export class ElementComponent implements OnInit, AfterViewInit {
 
     this.position.x = rect.x - parentRect.x;
     this.position.y = rect.y - parentRect.y;
+  }
+
+  @HostListener('mouseenter')
+  onMouseEnter(): void {
+    this.hovered = true;
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave(): void {
+    this.hovered = false;
   }
 
   //#endregion

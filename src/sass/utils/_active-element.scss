@@ -1,36 +1,12 @@
 @mixin activeElement {
-  outline-color: transparent;
+  outline: 2px dotted transparent;
+  outline-offset: 4px;
 
   transition-duration: 0.2s;
   transition-property: outline-color;
 
-  &::before {
-    opacity: 0;
-
-    transition-duration: 2s;
-    transition-property: opacity;
-  }
-
   &:hover {
     outline: 2px dotted grey;
     outline-offset: 4px;
-
-    &::before {
-      content: attr(data-label);
-      opacity: 1;
-
-      position: absolute;
-      left: -8px;
-      top: -30px;
-
-      background-color: white;
-      border-radius: 4px;
-      color: #585858;
-
-      padding: 2px;
-
-      font-size: 12px;
-      font-style: italic;
-    }
   }
 }

@@ -1,4 +1,6 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { fadeAnimation } from '../../animations/fade.animation';
 import { Dimension } from '../../models/dimension/dimension';
 import { Position } from '../../models/position/position';
 import { ElementComponent } from '../element/element.component';
@@ -9,7 +11,8 @@ import { ElementComponent } from '../element/element.component';
   styleUrls: [
     './box-element.component.scss',
     './../element/element.component.scss'
-  ]
+  ],
+  animations: [fadeAnimation]
 })
 export class BoxElementComponent extends ElementComponent implements OnInit {
 
