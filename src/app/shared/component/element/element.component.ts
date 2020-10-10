@@ -28,10 +28,7 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {
-    const x = this.element?.position?.x;
-    const y = this.element?.position?.y;
-
-    this.elementRef?.nativeElement?.style.setProperty('transform', `translate3d(${x}px, ${y}px, 0px)`);
+    this.refreshPosition();
   }
 
   ngOnDestroy(): void { }
@@ -87,6 +84,13 @@ export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
   isActive = () => this.active || this.dragging;
 
   showHead = () => this.isActive() || this.hovered;
+
+  refreshPosition(): void {
+    const x = this.element?.position?.x;
+    const y = this.element?.position?.y;
+
+    this.elementRef?.nativeElement?.style.setProperty('transform', `translate3d(${x}px, ${y}px, 0px)`);
+  }
 
   //#endregion
 }

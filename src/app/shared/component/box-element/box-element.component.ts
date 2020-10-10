@@ -54,10 +54,20 @@ export class BoxElementComponent extends ElementComponent implements OnInit {
   }
 
   onResizeEnd(e: ResizeEvent): void {
-    console.log({ e });
-    // this.element.dimension.height = e?.rectangle.height;
-    // this.element.dimension.width = e?.rectangle.width;
     this.active = true;
+
+    if (typeof e.edges.left === 'number') {
+      this.element.position.x = this.element.position.x + e.edges.left;
+    }
+
+    if (typeof e.edges.top === 'number') {
+      this.element.position.y = this.element.position.y + e.edges.top;
+    }
+
+    this.element.dimension.height = e?.rectangle.height;
+    this.element.dimension.width = e?.rectangle.width;
+
+    this.refreshPosition();
   }
 
   //#endregion
