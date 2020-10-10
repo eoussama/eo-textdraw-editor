@@ -1,14 +1,13 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Dimension } from '../../models/dimension/dimension';
 import { Position } from '../../models/position/position';
-import { getRatio } from '../../utils/_utils';
 
 @Component({
   selector: 'app-element',
   templateUrl: './element.component.html',
   styleUrls: ['./element.component.scss']
 })
-export class ElementComponent implements OnInit, AfterViewInit {
+export class ElementComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //#region Properties
 
@@ -27,13 +26,13 @@ export class ElementComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log('ddd');
-  }
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     this.element?.nativeElement?.style.setProperty('transform', `translate3d(${this.position.x}px, ${this.position.y}px, 0px)`);
   }
+
+  ngOnDestroy(): void { }
 
   //#endregion
 
@@ -41,9 +40,11 @@ export class ElementComponent implements OnInit, AfterViewInit {
 
   onDragStarted(): void {
     this.dragging = true;
+    this.active = true;
   }
 
   onDragging(e: any): void {
+    document.documentElement.click();
     const parentRect = e?.source?.element?.nativeElement?.parentElement?.parentElement?.getClientRects()?.item(0);
     const rect = e?.source?.element?.nativeElement?.getClientRects()?.item(0);
 
@@ -53,6 +54,12 @@ export class ElementComponent implements OnInit, AfterViewInit {
 
   onDragEnded(): void {
     this.dragging = false;
+    this.active = true;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClicked(e: MouseEvent): void {
+    this.active = this.element?.nativeElement.contains(e.target);
   }
 
   @HostListener('mouseenter')
