@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ElementModule } from './shared/component/element/element.module';
+import { BoardModule } from './shared/component/board/board.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { ElementModule } from './shared/component/element/element.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ElementModule
+    BoardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

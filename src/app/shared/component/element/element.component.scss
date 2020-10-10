@@ -1,4 +1,10 @@
-div {
+@import "./../../../../sass/utils/active-element";
+
+.element {
+  cursor: pointer;
   position: absolute;
-  border: 2px dashed grey;
+
+  background-color: white;
+
+  @include activeElement;
 }
