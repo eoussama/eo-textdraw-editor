@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Dimension } from '../../models/dimension/dimension';
 import { Position } from '../../models/position/position';
+import { getRatio } from '../../utils/_utils';
 
 @Component({
   selector: 'app-board',
@@ -11,8 +12,10 @@ export class BoardComponent implements OnInit {
 
   //#region Properties
 
-  dimension = new Dimension({ height: 60, width: 100 });
-  position = new Position({ x: 150, y: 100 });
+  dim = new Dimension({ height: 100, width: 230 });
+  pos = new Position({ x: 150, y: 100 });
+
+  @Input() dimension: Dimension;
 
   //#endregion
 

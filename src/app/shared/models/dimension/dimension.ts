@@ -1,4 +1,4 @@
-import { Identifiers } from '@angular/compiler';
+import { getRatio } from '../../utils/_utils';
 
 export interface IDimension {
   height: number;
@@ -17,8 +17,8 @@ export class Dimension implements IDimension {
   //#region Lifecycle
 
   constructor(dimension?: IDimension) {
-    this.height = dimension?.height ?? 0;
-    this.width = dimension?.width ?? 0;
+    this.height = getRatio(dimension?.height ?? 0);
+    this.width = getRatio(dimension?.width ?? 0);
   }
 
   //#endregion

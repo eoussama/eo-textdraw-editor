@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Dimension } from '../../models/dimension/dimension';
 import { Position } from '../../models/position/position';
+import { getRatio } from '../../utils/_utils';
 
 @Component({
   selector: 'app-element',

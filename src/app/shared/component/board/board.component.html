@@ -1,4 +1,8 @@
 <div class="board">
-  <app-element [position]="position"
-    [dimension]="dimension"></app-element>
+  <div class="canvas"
+    [style.min-height.px]="dimension?.height"
+    [style.min-width.px]="dimension?.width">
+    <app-element [position]="pos"
+      [dimension]="dim"></app-element>
+  </div>
 </div>
