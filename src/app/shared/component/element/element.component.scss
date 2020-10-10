@@ -6,6 +6,10 @@
 
   @include activeElement;
 
+  &.cdk-drag-dragging {
+    cursor: grabbing;
+  }
+
   &__head {
     pointer-events: none;
 
