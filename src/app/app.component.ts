@@ -8,5 +8,5 @@ import { Dimension } from './shared/models/dimension/dimension';
 })
 export class AppComponent {
   title = 'eo-textdraw-editor';
-  dimension: Dimension = new Dimension({ height: 550, width: 900 });
+  dimension: Dimension = new Dimension({ height: 720, width: 1280 });
 }

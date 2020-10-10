@@ -119,7 +119,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit {
    */
   getResizeEdges = () => this.resize
     ? { bottom: true, right: true, top: true, left: true }
-    : { bottom: false, right: false, top: false, left: false };
+    : { bottom: false, right: false, top: false, left: false }
 
   //#endregion
 }
