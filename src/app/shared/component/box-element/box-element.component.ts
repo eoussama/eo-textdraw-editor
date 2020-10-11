@@ -139,7 +139,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
    * Used to enable and disable the resize mode
    */
   getResizeEdges = () => this.resize
-    ? { bottom: true, right: true, top: true, left: true }
+    ? { bottom: true, right: true, top: false, left: false }
     : { bottom: false, right: false, top: false, left: false }
 
   /**
