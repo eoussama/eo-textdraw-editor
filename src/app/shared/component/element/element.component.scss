@@ -6,10 +6,6 @@
 
   @include activeElement;
 
-  &.resize-ghost-element {
-    position: static !important;
-  }
-
   &.cdk-drag-dragging {
     cursor: grabbing;
   }
