@@ -2,7 +2,16 @@
   <div class="canvas"
     [style.min-height.px]="board?.dimension?.height"
     [style.min-width.px]="board?.dimension?.width">
-    <app-box-element *ngFor="let element of board?.elements"
-      [element]="element"></app-box-element>
+    <ng-container *ngFor="let element of board?.elements"
+      [ngSwitch]="element.type">
+
+      <!-- Box -->
+      <app-box-element *ngSwitchCase="ElementType.Box"
+        [element]="element"></app-box-element>
+
+      <!-- Text -->
+      <app-text-element *ngSwitchCase="ElementType.Text"
+        [element]="element"></app-text-element>
+    </ng-container>
   </div>
 </div>

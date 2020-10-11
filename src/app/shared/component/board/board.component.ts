@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ElementType } from '../../enums/element-types.enum';
 import { Board } from '../../models/board/board';
-import { BoxElement } from '../../models/elements/box-element';
 import { Element } from '../../models/elements/element';
 
 @Component({
@@ -11,6 +11,8 @@ import { Element } from '../../models/elements/element';
 export class BoardComponent implements OnInit {
 
   //#region Properties
+
+  ElementType: typeof ElementType = ElementType;
 
   @Input() board: Board;
 

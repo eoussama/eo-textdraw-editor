@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Board } from './shared/models/board/board';
 import { Dimension } from './shared/models/dimension/dimension';
 import { BoxElement } from './shared/models/elements/box-element';
+import { TextElement } from './shared/models/elements/text-element';
 import { Position } from './shared/models/position/position';
 
 @Component({
@@ -23,9 +24,9 @@ export class AppComponent implements OnInit {
     this.board = new Board({
       dimension: new Dimension({ height: 420, width: 720 }),
       elements: [
+        new TextElement(),
         new BoxElement({ color: '#FFF0F0', position: new Position({ y: 236 }) }),
-        new BoxElement({ color: '#5A8DB8cc', dimension: new Dimension({ width: 200, height: 39 }) }),
-        new BoxElement({ position: new Position({ x: 186 }) })
+        new BoxElement({ position: new Position({ x: 186, y: 58 }), dimension: new Dimension({ width: 200, height: 39 }) })
       ]
     });
   }
