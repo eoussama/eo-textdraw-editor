@@ -3,6 +3,7 @@ import { Element } from '../elements/element';
 
 export interface IBoard {
   readonly id: string;
+
   dimension: Dimension;
   elements: Element[];
 }

@@ -1,10 +1,12 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { fadeAnimation } from '../../animations/fade.animation';
 import { Element } from '../../models/elements/element';
 
 @Component({
   selector: 'app-element',
   templateUrl: './element.component.html',
-  styleUrls: ['./element.component.scss']
+  styleUrls: ['./element.component.scss'],
+  animations: [fadeAnimation]
 })
 export class ElementComponent implements OnInit, OnDestroy {
 

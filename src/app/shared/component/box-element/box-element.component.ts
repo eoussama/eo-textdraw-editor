@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ResizeEvent } from 'angular-resizable-element';
-import { fadeAnimation } from '../../animations/fade.animation';
 import { BoxElement } from '../../models/elements/box-element';
 import { ElementComponent } from '../element/element.component';
 
@@ -10,8 +9,7 @@ import { ElementComponent } from '../element/element.component';
   styleUrls: [
     './box-element.component.scss',
     './../element/element.component.scss'
-  ],
-  animations: [fadeAnimation]
+  ]
 })
 export class BoxElementComponent extends ElementComponent implements OnInit, AfterViewInit {
 

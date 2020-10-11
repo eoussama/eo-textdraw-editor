@@ -19,7 +19,7 @@ export class TextElement extends Element implements ITextElement {
 
   constructor(boxElement?: Partial<ITextElement>) {
     super(boxElement as IElement);
-    this.text = boxElement?.text ?? '';
+    this.text = boxElement?.text ?? this.name ?? '';
   }
 
   //#endregion

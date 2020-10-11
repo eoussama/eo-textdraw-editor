@@ -7,13 +7,13 @@
   @include activeElement;
 
   &.cdk-drag-dragging {
-    cursor: grabbing;
+    cursor: grabbing !important;
   }
 
   &__head {
     pointer-events: none;
 
-    position: relative;
+    position: absolute;
     top: -30px;
 
     margin-left: -6px;

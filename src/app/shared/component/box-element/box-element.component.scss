@@ -1,16 +1,16 @@
 .element--box {
   background-color: #0000005c;
+
+  .hitbox {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
+  }
 }
 
 mwlResizable {
   box-sizing: border-box;
-}
-
-.hitbox {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-
-  width: calc(100% - 12px);
-  height: calc(100% - 12px);
 }

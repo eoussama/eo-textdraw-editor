@@ -1,1 +1,26 @@
-<p>text-element works!</p>
+<div #elementRef
+  cdkDrag
+  cdkDragBoundary=".canvas"
+  class="element element--text"
+  [ngClass]="{ 'element--active': isActive() }"
+  [cdkDragDisabled]="!drag"
+  [cdkDragFreeDragPosition]="element?.position"
+  (cdkDragStarted)="onDragStart()"
+  (cdkDragMoved)="onDrag($event)"
+  (cdkDragEnded)="onDragEnd()">
+
+  <!-- Head -->
+  <div *ngIf="showHead()"
+    class="element__head"
+    [@fade]>
+
+    <!-- Position -->
+    <div class="element__position">
+      <span>{{ getPositionLabel() }}</span>
+    </div>
+  </div>
+
+  <div class="element__body">
+    {{ element?.text }}
+  </div>
+</div>
