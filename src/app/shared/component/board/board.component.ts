@@ -21,7 +21,7 @@ export class BoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.board);
+    console.log({ board: this.board });
   }
 
   //#endregion
