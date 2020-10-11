@@ -46,9 +46,7 @@ export class ElementComponent implements OnInit, OnDestroy {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log({ element: this.element });
-  }
+  ngOnInit(): void { }
 
   ngOnDestroy(): void { }
 

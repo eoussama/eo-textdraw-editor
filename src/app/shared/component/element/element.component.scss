@@ -2,7 +2,7 @@
 
 .element {
   cursor: pointer;
-  // position: absolute;
+  position: absolute;
 
   @include activeElement;
 
