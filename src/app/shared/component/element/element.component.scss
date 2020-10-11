@@ -8,6 +8,7 @@
 
   &.cdk-drag-dragging {
     cursor: grabbing !important;
+    z-index: 10;
   }
 
   &__head {
