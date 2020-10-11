@@ -23,6 +23,7 @@
   <div class="element__body">
     <span *ngIf="element"
       type="text"
-      contenteditable="true">{{ element.text }}</span>
+      contenteditable="true"
+      [style.color]="element?.color">{{ element?.text }}</span>
   </div>
 </div>
