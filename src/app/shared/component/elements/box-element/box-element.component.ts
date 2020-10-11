@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ResizeEvent } from 'angular-resizable-element';
-import { BoxElement } from '../../models/elements/box-element';
+import { BoxElement } from '../../../models/elements/box-element';
 import { ElementComponent } from '../element/element.component';
 
 @Component({

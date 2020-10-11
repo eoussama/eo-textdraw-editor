@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TextElement } from '../../models/elements/text-element';
+import { TextElement } from '../../../models/elements/text-element';
 import { ElementComponent } from '../element/element.component';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { fadeAnimation } from '../../animations/fade.animation';
-import { Element } from '../../models/elements/element';
+import { fadeAnimation } from '../../../animations/fade.animation';
+import { Element } from '../../../models/elements/element';
 
 @Component({
   selector: 'app-element',
