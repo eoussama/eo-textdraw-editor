@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
       dimension: new Dimension({ height: 420, width: 720 }),
       elements: [
         new BoxElement({ color: '#FFF0F0', position: new Position({ y: 236 }) }),
-        new BoxElement({ color: '#5A8DB8cc' }),
+        new BoxElement({ color: '#5A8DB8cc', dimension: new Dimension({ width: 200, height: 39 }) }),
         new BoxElement({ position: new Position({ x: 186 }) })
       ]
     });
