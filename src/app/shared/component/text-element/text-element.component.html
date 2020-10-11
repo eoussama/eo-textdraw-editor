@@ -21,6 +21,8 @@
   </div>
 
   <div class="element__body">
-    {{ element?.text }}
+    <span *ngIf="element"
+      type="text"
+      contenteditable="true">{{ element.text }}</span>
   </div>
 </div>
