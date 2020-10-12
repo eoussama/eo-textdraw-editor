@@ -30,8 +30,4 @@ export class TextElementComponent extends ElementComponent implements OnInit {
   ngOnInit(): void { }
 
   //#endregion
-
-  //#region Events
-
-  //#endregion
 }

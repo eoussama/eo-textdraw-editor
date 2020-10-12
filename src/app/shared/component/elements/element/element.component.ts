@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { IDraggable } from 'src/app/shared/interfaces/idraggable.interface';
 import { fadeAnimation } from '../../../animations/fade.animation';
 import { Element } from '../../../models/elements/element';
 
@@ -8,7 +9,7 @@ import { Element } from '../../../models/elements/element';
   styleUrls: ['./element.component.scss'],
   animations: [fadeAnimation]
 })
-export class ElementComponent implements OnInit, OnDestroy {
+export class ElementComponent implements OnInit, OnDestroy, IDraggable {
 
   //#region Properties
 
