@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ResizeEvent } from 'angular-resizable-element';
+import { IResizeable } from 'src/app/shared/interfaces/iresizeable.interface';
 import { BoxElement } from '../../../models/elements/box-element';
 import { ElementComponent } from '../element/element.component';
 
@@ -11,7 +12,7 @@ import { ElementComponent } from '../element/element.component';
     './../element/element.component.scss'
   ]
 })
-export class BoxElementComponent extends ElementComponent implements OnInit, AfterViewInit {
+export class BoxElementComponent extends ElementComponent implements OnInit, AfterViewInit, IResizeable {
 
   //#region Properties
 
