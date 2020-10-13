@@ -1,16 +1,57 @@
 .element--box {
+  --resize-stroke: 15px;
+  --resize-offset: 8px;
+
   background-color: #0000005c;
 
   .hitbox {
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 0;
+    left: 0;
 
-    width: calc(100% - 12px);
-    height: calc(100% - 12px);
+    width: 100%;
+    height: 100%;
   }
-}
 
-mwlResizable {
-  box-sizing: border-box;
+  mwlResizable {
+    box-sizing: border-box;
+  }
+
+  .resize-handle {
+    position: absolute;
+
+    &--top {
+      cursor: e-resize;
+
+      left: calc(-1 * var(--resize-offset));
+      top: calc(-1 * var(--resize-offset));
+
+      height: var(--resize-stroke);
+      width: calc(100% + (var(--resize-offset) * 2));
+    }
+
+    &--bottom {
+      bottom: calc(-1 * var(--resize-offset));
+      left: calc(-1 * var(--resize-offset));
+
+      height: var(--resize-stroke);
+      width: calc(100% + (var(--resize-offset) * 2));
+    }
+
+    &--left {
+      left: calc(-1 * var(--resize-offset));
+      top: calc(-1 * var(--resize-offset));
+
+      height: calc(100% + (var(--resize-offset) * 2));
+      width: var(--resize-stroke);
+    }
+
+    &--right {
+      right: calc(-1 * var(--resize-offset));
+      top: calc(-1 * var(--resize-offset));
+
+      height: calc(100% + (var(--resize-offset) * 2));
+      width: var(--resize-stroke);
+    }
+  }
 }

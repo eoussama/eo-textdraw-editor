@@ -43,13 +43,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
     super.ngOnInit();
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-
-      // Updating the element's max size
-      this.updateElementMaxSize();
-    }, 0);
-  }
+  ngAfterViewInit(): void { }
 
   //#endregion
 
@@ -71,9 +65,6 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
 
     // Deactivating the dragging mode
     this.drag = false;
-
-    // Updating the element's max size
-    this.updateElementMaxSize();
   }
 
   /**
@@ -88,9 +79,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
   /**
    * Triggers when the element is being resized
    */
-  onResize(): void {
-    this.updateElementMaxSize();
-  }
+  onResize(): void { }
 
   /**
    * Triggers when resizing is finished
@@ -138,27 +127,8 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
    * Used to enable and disable the resize mode
    */
   getResizeEdges = () => this.resize
-    ? { bottom: true, right: true, top: false, left: false }
+    ? { bottom: true, right: true, top: true, left: true }
     : { bottom: false, right: false, top: false, left: false }
-
-  /**
-   * Updates the element's maximum size
-   */
-  updateElementMaxSize(): void {
-    // Getting the board's client offset
-    const parentRect = this.elementRef?.nativeElement?.parentElement?.parentElement?.getClientRects()?.item(0);
-
-    // Getting the element's client offset
-    const rect = this.elementRef?.nativeElement?.getClientRects()?.item(0);
-
-    // Calculating the maximum size
-    const maxHeight = parentRect?.height - (rect?.top - parentRect?.top);
-    const maxWidth = parentRect?.width - (rect?.left - parentRect?.left);
-
-    // Updating the maximum size
-    this.elementRef?.nativeElement?.style.setProperty('max-height', `${maxHeight}px`, 'important');
-    this.elementRef?.nativeElement?.style.setProperty('max-width', `${maxWidth}px`, 'important');
-  }
 
   //#endregion
 }
