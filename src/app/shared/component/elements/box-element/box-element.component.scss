@@ -20,38 +20,38 @@
   .resize-handle {
     position: absolute;
 
-    &--top {
-      cursor: e-resize;
-
+    &--top,
+    &--bottom {
+      cursor: n-resize;
       left: calc(-1 * var(--resize-offset));
-      top: calc(-1 * var(--resize-offset));
 
       height: var(--resize-stroke);
       width: calc(100% + (var(--resize-offset) * 2));
+    }
+
+    &--left,
+    &--right {
+      cursor: e-resize;
+      top: calc(-1 * var(--resize-offset));
+
+      height: calc(100% + (var(--resize-offset) * 2));
+      width: var(--resize-stroke);
+    }
+
+    &--top {
+      top: calc(-1 * var(--resize-offset));
     }
 
     &--bottom {
       bottom: calc(-1 * var(--resize-offset));
-      left: calc(-1 * var(--resize-offset));
-
-      height: var(--resize-stroke);
-      width: calc(100% + (var(--resize-offset) * 2));
     }
 
     &--left {
       left: calc(-1 * var(--resize-offset));
-      top: calc(-1 * var(--resize-offset));
-
-      height: calc(100% + (var(--resize-offset) * 2));
-      width: var(--resize-stroke);
     }
 
     &--right {
       right: calc(-1 * var(--resize-offset));
-      top: calc(-1 * var(--resize-offset));
-
-      height: calc(100% + (var(--resize-offset) * 2));
-      width: var(--resize-stroke);
     }
   }
 }
