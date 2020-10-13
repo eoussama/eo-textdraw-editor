@@ -130,5 +130,44 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
     ? { bottom: true, right: true, top: true, left: true }
     : { bottom: false, right: false, top: false, left: false }
 
+  /**
+   * Validates the resize process
+   * @param e The resize event object
+   */
+  validateResize(e: ResizeEvent): boolean {
+
+    // Getting the board's client offset
+    const parentRect = this.elementRef?.nativeElement?.parentElement?.parentElement?.getClientRects()?.item(0);
+
+    // Getting the element's client offset
+    const rect = this.elementRef?.nativeElement?.getClientRects()?.item(0);
+
+    // Getting the relative axes
+    const relativeX = rect?.left - parentRect?.left;
+    const relativeY = rect?.top - parentRect?.top;
+
+    // Limiting the right resize
+    if (e.edges.right && e.edges.right > parentRect?.width - (relativeX + rect?.width)) {
+      return false;
+    }
+
+    // Limiting the left resize
+    if (e.edges.left && e.edges.left < relativeX * -1) {
+      return false;
+    }
+
+    // Limiting the top resize
+    if (e.edges.top && e.edges.top < relativeY * -1) {
+      return false;
+    }
+
+    // Limiting the bottom resize
+    if (e.edges.bottom && e.edges.bottom > parentRect?.height - (relativeY + rect?.height)) {
+      return false;
+    }
+
+    return true;
+  }
+
   //#endregion
 }

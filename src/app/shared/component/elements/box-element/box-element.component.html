@@ -7,6 +7,7 @@
   [style.height.px]="getHeight()"
   [style.width.px]="getWidth()"
   [style.backgroundColor]="getColor()"
+  [validateResize]="validateResize.bind(this)"
   [enableGhostResize]="true"
   [resizeEdges]="getResizeEdges()"
   [cdkDragDisabled]="!drag"
