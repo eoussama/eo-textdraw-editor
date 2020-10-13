@@ -7,6 +7,7 @@
   [style.height.px]="getHeight()"
   [style.width.px]="getWidth()"
   [style.backgroundColor]="getColor()"
+  [validateResize]="validateResize.bind(this)"
   [enableGhostResize]="true"
   [resizeEdges]="getResizeEdges()"
   [cdkDragDisabled]="!drag"
@@ -33,4 +34,18 @@
   <div class="hitbox"
     (mouseenter)="onDragActive()"
     (mouseleave)="onDragDisactive()"></div>
+
+  <!-- Handles -->
+  <div class="resize-handle resize-handle--top"
+    mwlResizeHandle
+    [resizeEdges]="{ top: true }"></div>
+  <div class="resize-handle resize-handle--left"
+    mwlResizeHandle
+    [resizeEdges]="{ left: true }"></div>
+  <div class="resize-handle resize-handle--right"
+    mwlResizeHandle
+    [resizeEdges]="{ right: true }"></div>
+  <div class="resize-handle resize-handle--bottom"
+    mwlResizeHandle
+    [resizeEdges]="{ bottom: true }"></div>
 </div>

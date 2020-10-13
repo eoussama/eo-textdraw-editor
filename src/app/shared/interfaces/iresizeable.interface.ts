@@ -19,7 +19,7 @@ export interface IResizeable {
   //#region Methods
 
   getResizeEdges(): object;
-  updateElementMaxSize(): void;
+  validateResize(event: ResizeEvent): boolean;
 
   //#endregion
 }

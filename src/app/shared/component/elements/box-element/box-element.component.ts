@@ -43,13 +43,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
     super.ngOnInit();
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-
-      // Updating the element's max size
-      this.updateElementMaxSize();
-    }, 0);
-  }
+  ngAfterViewInit(): void { }
 
   //#endregion
 
@@ -71,9 +65,6 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
 
     // Deactivating the dragging mode
     this.drag = false;
-
-    // Updating the element's max size
-    this.updateElementMaxSize();
   }
 
   /**
@@ -88,9 +79,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
   /**
    * Triggers when the element is being resized
    */
-  onResize(): void {
-    this.updateElementMaxSize();
-  }
+  onResize(): void { }
 
   /**
    * Triggers when resizing is finished
@@ -138,26 +127,46 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
    * Used to enable and disable the resize mode
    */
   getResizeEdges = () => this.resize
-    ? { bottom: true, right: true, top: false, left: false }
+    ? { bottom: true, right: true, top: true, left: true }
     : { bottom: false, right: false, top: false, left: false }
 
   /**
-   * Updates the element's maximum size
+   * Validates the resize process
+   * @param e The resize event object
    */
-  updateElementMaxSize(): void {
+  validateResize(e: ResizeEvent): boolean {
+
     // Getting the board's client offset
     const parentRect = this.elementRef?.nativeElement?.parentElement?.parentElement?.getClientRects()?.item(0);
 
     // Getting the element's client offset
     const rect = this.elementRef?.nativeElement?.getClientRects()?.item(0);
 
-    // Calculating the maximum size
-    const maxHeight = parentRect?.height - (rect?.top - parentRect?.top);
-    const maxWidth = parentRect?.width - (rect?.left - parentRect?.left);
+    // Getting the relative axes
+    const relativeX = rect?.left - parentRect?.left;
+    const relativeY = rect?.top - parentRect?.top;
 
-    // Updating the maximum size
-    this.elementRef?.nativeElement?.style.setProperty('max-height', `${maxHeight}px`, 'important');
-    this.elementRef?.nativeElement?.style.setProperty('max-width', `${maxWidth}px`, 'important');
+    // Limiting the right resize
+    if (e.edges.right && e.edges.right > parentRect?.width - (relativeX + rect?.width)) {
+      return false;
+    }
+
+    // Limiting the left resize
+    if (e.edges.left && e.edges.left < relativeX * -1) {
+      return false;
+    }
+
+    // Limiting the top resize
+    if (e.edges.top && e.edges.top < relativeY * -1) {
+      return false;
+    }
+
+    // Limiting the bottom resize
+    if (e.edges.bottom && e.edges.bottom > parentRect?.height - (relativeY + rect?.height)) {
+      return false;
+    }
+
+    return true;
   }
 
   //#endregion
