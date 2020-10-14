@@ -5,6 +5,7 @@ export interface IResizeable {
   //#region Properties
 
   resize: boolean;
+  resizing: boolean;
 
   //#endregion
 
