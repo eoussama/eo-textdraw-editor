@@ -22,6 +22,11 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
   resize = true;
 
   /**
+   * Whether or not the element is being resized
+   */
+  resizing = false;
+
+  /**
    * Whether or not the element is draggable
    */
   drag = false;
@@ -72,14 +77,18 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
    */
   onResizeStart(): void {
 
-    // Markindg the element as active
+    // Marking the element as active
     this.active = true;
   }
 
   /**
    * Triggers when the element is being resized
    */
-  onResize(): void { }
+  onResize(): void {
+
+    // Marking the element as being resized
+    this.resizing = true;
+  }
 
   /**
    * Triggers when resizing is finished
@@ -89,6 +98,9 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
 
     // Marking the element as active
     this.active = true;
+
+    // Marking the element as stoped being resized
+    this.resizing = false;
 
     // If the element has been resized from the left
     if (typeof e.edges.left === 'number') {
@@ -129,6 +141,18 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
   getResizeEdges = () => this.resize
     ? { bottom: true, right: true, top: true, left: true }
     : { bottom: false, right: false, top: false, left: false }
+
+  /**
+   * Gets the size label
+   */
+  getSizeLabel = () => `(x: ${this.element?.position?.x}, y: ${this.element?.position?.y})`;
+
+  /**
+   * Gets the head label
+   */
+  getHeadLabel = () => this.resize
+    ? this.getSizeLabel()
+    : this.getPositionLabel()
 
   /**
    * Validates the resize process
