@@ -6,9 +6,13 @@
 
   @include activeElement;
 
+  &--active,
+  &.cdk-drag-dragging {
+    z-index: 10;
+  }
+
   &.cdk-drag-dragging {
     cursor: grabbing !important;
-    z-index: 10;
   }
 
   &__head {
