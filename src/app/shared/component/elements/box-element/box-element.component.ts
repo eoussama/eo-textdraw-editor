@@ -143,18 +143,6 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
     : { bottom: false, right: false, top: false, left: false }
 
   /**
-   * Gets the size label
-   */
-  getSizeLabel = () => `(x: ${this.element?.position?.x}, y: ${this.element?.position?.y})`;
-
-  /**
-   * Gets the head label
-   */
-  getHeadLabel = () => this.resize
-    ? this.getSizeLabel()
-    : this.getPositionLabel()
-
-  /**
    * Validates the resize process
    * @param e The resize event object
    */

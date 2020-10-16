@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ElementComponent } from './element.component';
 
@@ -10,6 +10,7 @@ import { ElementComponent } from './element.component';
   imports: [
     CommonModule
   ],
+  providers: [DecimalPipe],
   exports: [DragDropModule, ElementComponent]
 })
 export class ElementModule { }
