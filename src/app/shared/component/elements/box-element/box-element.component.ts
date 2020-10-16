@@ -84,7 +84,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
   /**
    * Triggers when the element is being resized
    */
-  onResize(): void {
+  onResize(e: ResizeEvent): void {
 
     // Marking the element as being resized
     this.resizing = true;
