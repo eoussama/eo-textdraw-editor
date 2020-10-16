@@ -16,7 +16,7 @@
   (cdkDragMoved)="onDrag($event)"
   (cdkDragEnded)="onDragEnd()"
   (resizeStart)="onResizeStart()"
-  (resizing)="onResize()"
+  (resizing)="onResize($event)"
   (resizeEnd)="onResizeEnd($event)">
 
   <!-- Head -->
@@ -26,7 +26,8 @@
 
     <!-- Position -->
     <div class="element__position">
-      <span>{{ getHeadLabel() }}</span>
+      <span>(x: {{ this.element?.position?.x | number:'1.0'  }}, y:
+        {{ this.element?.position?.y | number:'1.0' }})</span>
     </div>
   </div>
 

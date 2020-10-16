@@ -12,7 +12,7 @@ export interface IResizeable {
   //#region Events
 
   onResizeStart(): void;
-  onResize(): void;
+  onResize(e: ResizeEvent): void;
   onResizeEnd(e: ResizeEvent): void;
 
   //#endregion

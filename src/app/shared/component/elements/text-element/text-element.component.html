@@ -16,7 +16,8 @@
 
     <!-- Position -->
     <div class="element__position">
-      <span>{{ getPositionLabel() }}</span>
+      <span><span>(x: {{ this.element?.position?.x | number:'1.0'  }}, y:
+          {{ this.element?.position?.y | number:'1.0' }})</span></span>
     </div>
   </div>
 

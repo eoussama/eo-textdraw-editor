@@ -84,7 +84,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
   /**
    * Triggers when the element is being resized
    */
-  onResize(): void {
+  onResize(e: ResizeEvent): void {
 
     // Marking the element as being resized
     this.resizing = true;
@@ -141,18 +141,6 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
   getResizeEdges = () => this.resize
     ? { bottom: true, right: true, top: true, left: true }
     : { bottom: false, right: false, top: false, left: false }
-
-  /**
-   * Gets the size label
-   */
-  getSizeLabel = () => `(x: ${this.element?.position?.x}, y: ${this.element?.position?.y})`;
-
-  /**
-   * Gets the head label
-   */
-  getHeadLabel = () => this.resize
-    ? this.getSizeLabel()
-    : this.getPositionLabel()
 
   /**
    * Validates the resize process
