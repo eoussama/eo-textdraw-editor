@@ -4,6 +4,7 @@ import { Element, IElement } from './element';
 export interface ITextElement extends IElement {
   text: string;
   color: string;
+  useBox: boolean;
 }
 
 export class TextElement extends Element implements ITextElement {
@@ -14,6 +15,7 @@ export class TextElement extends Element implements ITextElement {
 
   text: string;
   color: string;
+  useBox: boolean;
 
   //#endregion
 
@@ -24,6 +26,7 @@ export class TextElement extends Element implements ITextElement {
 
     this.text = boxElement?.text ?? this.name ?? '';
     this.color = boxElement?.color ?? '#000000';
+    this.useBox = boxElement?.useBox ?? false;
   }
 
   //#endregion

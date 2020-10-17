@@ -132,7 +132,7 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
   /**
    * Getting the element's color
    */
-  getColor = () => this.element?.color;
+  getColor = () => this.element?.backgroundColor;
 
   /**
    * Getting the resize edges.

@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     this.board = new Board({
       dimension: new Dimension({ height: 420, width: 720 }),
       elements: [
-        new BoxElement({ color: '#FFF0F0', position: new Position({ y: 236 }) }),
+        new BoxElement({ backgroundColor: '#FFF0F0', position: new Position({ y: 236 }) }),
         new BoxElement({ position: new Position({ x: 186, y: 58 }), dimension: new Dimension({ width: 200, height: 39 }) }),
         new TextElement({ text: 'Textdraw Text', color: '#FFB226' }),
         new TextElement({ text: 'Example Text 2', position: new Position({ x: 220, y: 356 }) }),
