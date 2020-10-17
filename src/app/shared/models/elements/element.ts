@@ -3,7 +3,9 @@ import { Dimension } from '../dimension/dimension';
 import { ElementType } from '../../enums/element-types.enum';
 
 export interface IElement {
-  id: string;
+  readonly id: string;
+  readonly type: ElementType;
+
   name: string;
   dimension: Dimension;
   position: Position;
