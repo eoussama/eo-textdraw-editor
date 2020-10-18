@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import { Dimension } from '../dimension/dimension';
 import { Element } from '../elements/element';
 
@@ -22,7 +24,7 @@ export class Board implements IBoard {
   //#region Lifecycle
 
   constructor(board?: Partial<IBoard>) {
-    this.id = board?.id ?? '';
+    this.id = board?.id ?? uuidv4();
 
     this.dimension = { ...(board?.dimension ?? new Dimension({ height: 720, width: 1280 })) };
     this.elements = [...(board?.elements ?? [])];

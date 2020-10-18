@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import { Position } from '../position/position';
 import { Dimension } from '../dimension/dimension';
 import { ElementType } from '../../enums/element-types.enum';
@@ -27,7 +29,7 @@ export class Element implements IElement {
   //#region Lifecycle
 
   constructor(element: IElement) {
-    this.id = element?.id ?? '';
+    this.id = element?.id ?? uuidv4();
     this.name = element?.name ?? '';
 
     this.dimension = { ...(element?.dimension ?? new Dimension()) };
