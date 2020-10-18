@@ -58,7 +58,7 @@ export class Board implements IBoard {
         ...element,
 
         // Building a contextual name
-        name: `${GenericElement.DEFAULT_NAME} (${index})`
+        name: element.name || `${GenericElement.DEFAULT_NAME} (${index})`
       })
     );
   }
