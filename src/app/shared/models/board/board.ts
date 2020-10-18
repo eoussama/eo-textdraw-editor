@@ -36,11 +36,30 @@ export class Board implements IBoard {
 
   //#region Methods
 
+  /**
+   * Creates and adds an element to the board
+   *
+   * @param type The type of the element
+   * @param element The element properties
+   */
   createElement(type: ElementType = ElementType.Box, element?: Partial<IElement>) {
+
+    // Getting the element class
     const GenericElement = getElementClass(type);
 
+    // Getting the index
+    const index = Math.max(this.elements.filter(e => e.type === type)?.length + 1 ?? 1, 1);
+
+    // Adding the element to the board
     this.elements.push(
-      new GenericElement({ ...element })
+      new GenericElement({
+
+        // Getting the properties
+        ...element,
+
+        // Building a contextual name
+        name: `${GenericElement.DEFAULT_NAME} (${index})`
+      })
     );
   }
 

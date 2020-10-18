@@ -9,6 +9,8 @@ export class BoxElement extends Element implements IBoxElement {
 
   //#region Properties
 
+  static readonly DEFAULT_NAME: string = 'Box Element';
+
   readonly type: ElementType = ElementType.Box;
 
   backgroundColor: string;

@@ -17,6 +17,8 @@ export class Element implements IElement {
 
   //#region Properties
 
+  static readonly DEFAULT_NAME: string = 'Element';
+
   readonly type: ElementType;
   readonly id: string;
 

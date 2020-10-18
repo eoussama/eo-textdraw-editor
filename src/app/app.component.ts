@@ -27,10 +27,9 @@ export class AppComponent implements OnInit {
     [
       { type: ElementType.Box, backgroundColor: '#FFF0F0', position: new Position({ y: 236 }) },
       { type: ElementType.Box, position: new Position({ x: 186, y: 58 }), dimension: new Dimension({ width: 200, height: 39 }) },
-      { type: ElementType.Text, text: 'Textdraw Text', color: '#FFB226' },
-      { type: ElementType.Text, text: 'Example Text 2', position: new Position({ x: 220, y: 356 }) },
+      { type: ElementType.Text, color: '#FFB226' },
+      { type: ElementType.Text, position: new Position({ x: 220, y: 356 }) },
     ].forEach((element) => this.board.createElement(element.type, element));
-    // this.board.createElement(ElementType.Text);
   }
 
   //#endregion
