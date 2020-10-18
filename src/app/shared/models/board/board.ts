@@ -3,7 +3,9 @@ import { ElementType } from '../../enums/element-types.enum';
 import { getElementClass } from '../../utils/element.util';
 
 import { Dimension } from '../dimension/dimension';
+import { IBoxElement } from '../elements/box-element';
 import { Element, IElement } from '../elements/element';
+import { ITextElement } from '../elements/text-element';
 
 export interface IBoard {
   readonly id: string;
@@ -42,7 +44,7 @@ export class Board implements IBoard {
    * @param type The type of the element
    * @param element The element properties
    */
-  createElement(type: ElementType = ElementType.Box, element?: Partial<IElement>) {
+  createElement(type: ElementType = ElementType.Box, element?: Partial<IElement | IBoxElement | ITextElement>) {
 
     // Getting the element class
     const GenericElement = getElementClass(type);
@@ -58,7 +60,7 @@ export class Board implements IBoard {
         ...element,
 
         // Building a contextual name
-        name: element.name || `${GenericElement.DEFAULT_NAME} (${index})`
+        name: element?.name || `${GenericElement.DEFAULT_NAME} (${index})`
       })
     );
   }
