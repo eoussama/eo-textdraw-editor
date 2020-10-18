@@ -1,1 +1,20 @@
+<div style="position: fixed; z-index: 1;">
+  <button (click)="onElementAdd(ElementType.Box)">Box element</button>
+  <button (click)="onElementAdd(ElementType.Text)">Text element</button>
+  <hr>
+  <div>
+    <label>
+      color / bg color:
+      <input type="color"
+        (change)="onColorChanged($event)">
+    </label>
+  </div>
+  <div>
+    <label>
+      text:
+      <input type="text"
+        (change)="onTextChanged($event)">
+    </label>
+  </div>
+</div>
 <app-board [board]="board"></app-board>

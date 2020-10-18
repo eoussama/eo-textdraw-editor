@@ -11,6 +11,8 @@ export class TextElement extends Element implements ITextElement {
 
   //#region Properties
 
+  static readonly DEFAULT_NAME: string = 'Text Element';
+
   readonly type: ElementType = ElementType.Text;
 
   text: string;
