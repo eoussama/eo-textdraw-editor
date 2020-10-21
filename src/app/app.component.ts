@@ -12,8 +12,6 @@ export class AppComponent implements OnInit {
 
   //#region Properties
 
-  text = '';
-  color = '';
   board: Board;
   ElementType = ElementType;
 
@@ -22,7 +20,7 @@ export class AppComponent implements OnInit {
   //#region Lifecycle
 
   ngOnInit(): void {
-    this.board = new Board({ dimension: new Dimension({ height: 600, width: 600 }) });
+    this.board = new Board({ dimension: new Dimension({ height: 720, width: 1080 }) });
   }
 
   //#endregion
@@ -30,19 +28,7 @@ export class AppComponent implements OnInit {
   //#region Events
 
   onElementAdd(type: ElementType): void {
-    this.board.createElement(type, {
-      text: this.text,
-      color: this.color,
-      backgroundColor: this.color
-    });
-  }
-
-  onColorChanged(e: any): void {
-    this.color = e?.target?.value;
-  }
-
-  onTextChanged(e: any): void {
-    this.text = e?.target?.value;
+    this.board.createElement(type);
   }
 
   //#endregion
