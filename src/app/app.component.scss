@@ -21,6 +21,12 @@
     .toolbar {
         padding: 5px;
 
+        border-right: 1px solid grey;
+        box-sizing: border-box;
+
+        height: 100%;
+        width: 100%;
+
         &__list {
             list-style-type: none;
 
