@@ -1,0 +1,41 @@
+.root {
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    grid-template-areas: "left content right";
+
+    height: 100%;
+    width: 100%;
+
+    .left {
+        grid-area: left;
+    }
+
+    .content {
+        grid-area: content;
+    }
+
+    .right {
+        grid-area: right;
+    }
+
+    .toolbar {
+        padding: 5px;
+
+        &__list {
+            list-style-type: none;
+
+            margin: 0;
+            padding: 0;
+        }
+
+        &__item {
+            cursor: pointer;
+
+            border: 1px solid grey;
+            border-radius: 4px;
+
+            padding: 10px 15px;
+            margin-top: 5px;
+        }
+    }
+}
