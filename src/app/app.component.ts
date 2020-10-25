@@ -24,12 +24,4 @@ export class AppComponent implements OnInit {
   }
 
   //#endregion
-
-  //#region Events
-
-  onElementAdd(type: ElementType): void {
-    this.board.createElement(type);
-  }
-
-  //#endregion
 }
