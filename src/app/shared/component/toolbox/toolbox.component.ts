@@ -10,6 +10,7 @@ export class ToolboxComponent implements OnInit {
 
   //#region Properties
 
+  showOptions = false;
   ElementType = ElementType;
 
   //#endregion
@@ -24,7 +25,9 @@ export class ToolboxComponent implements OnInit {
 
   //#region Events
 
-  onElementClick(type: ElementType): void { }
+  onElementClick(type: ElementType): void { 
+    this.showOptions = true;
+  }
 
   //#endregion
 }

@@ -1,5 +1,6 @@
-.toolbar {
-  padding: 5px;
+.root {
+  display: flex;
+  flex-direction: row;
 
   border-right: 1px solid grey;
   box-sizing: border-box;
@@ -7,20 +8,29 @@
   height: 100%;
   width: 100%;
 
-  &__list {
-    list-style-type: none;
+  .toolbar {
+    padding: 5px;
 
-    margin: 0;
-    padding: 0;
+    &__list {
+      list-style-type: none;
+
+      margin: 0;
+      padding: 0;
+    }
+
+    &__item {
+      cursor: pointer;
+
+      border: 1px solid grey;
+      border-radius: 4px;
+
+      padding: 10px 15px;
+      margin-bottom: 5px;
+    }
   }
 
-  &__item {
-    cursor: pointer;
-
-    border: 1px solid grey;
-    border-radius: 4px;
-
-    padding: 10px 15px;
-    margin-top: 5px;
+  .options {
+    min-width: fit-content;
+    padding: 5px;
   }
 }
