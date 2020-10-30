@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardModule } from './shared/component/board/board.module';
+import { ToolboxModule } from './shared/component/toolbox/toolbox.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BoardModule } from './shared/component/board/board.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    BoardModule
+    BoardModule,
+    ToolboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

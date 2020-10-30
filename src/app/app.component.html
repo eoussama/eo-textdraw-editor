@@ -1,13 +1,6 @@
 <div class="root">
   <div class="left">
-    <aside class="toolbar">
-      <ul class="toolbar__list">
-        <li class="toolbar__item" (click)="onElementAdd(ElementType.Box)">B</li>
-        <li class="toolbar__item" (click)="onElementAdd(ElementType.Text)">
-          T
-        </li>
-      </ul>
-    </aside>
+    <app-toolbox></app-toolbox>
   </div>
   <div class="content">
     <app-board [board]="board"></app-board>

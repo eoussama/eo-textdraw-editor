@@ -1,7 +1,10 @@
-import { Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Injector, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { IDraggable } from 'src/app/shared/interfaces/idraggable.interface';
-import { fadeAnimation } from '../../../animations/fade.animation';
+
 import { Element } from '../../../models/elements/element';
+import { fadeAnimation } from '../../../animations/fade.animation';
+
+import { ToolboxService } from 'src/app/shared/services/toolbox/toolbox.service';
 
 @Component({
   selector: 'app-element',
@@ -34,6 +37,11 @@ export class ElementComponent implements OnInit, OnDestroy, IDraggable {
   dragging = false;
 
   /**
+   * Toolbox service
+   */
+  toolboxService = this.injector.get(ToolboxService);
+
+  /**
    * The element object
    */
   @Input() element: Element;
@@ -47,7 +55,7 @@ export class ElementComponent implements OnInit, OnDestroy, IDraggable {
 
   //#region Lifecycle
 
-  constructor() { }
+  constructor(private injector: Injector) { }
 
   ngOnInit(): void { }
 
@@ -110,6 +118,13 @@ export class ElementComponent implements OnInit, OnDestroy, IDraggable {
 
     // Setting the active state of the element depending on whether it was click or not
     this.active = this.elementRef?.nativeElement.contains(e.target);
+
+    // Checking if the element is active
+    if (this.active) {
+
+      // Setting the active element
+      this.toolboxService.activeElement.next(this.element);
+    }
   }
 
   /**
@@ -156,7 +171,9 @@ export class ElementComponent implements OnInit, OnDestroy, IDraggable {
    */
   isActive = () => this.active || this.dragging;
 
-  // Checks whether or not to display the head element (contains the position label and other controls)
+  /**
+   * Checks whether or not to display the head element (contains the position label and other controls)
+   */
   showHead = () => this.isActive() || this.hovered;
 
   //#endregion
