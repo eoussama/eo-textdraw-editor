@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Injector, Input, OnInit } from '@angular/core';
+
 import { TextElement } from '../../../models/elements/text-element';
 import { ElementComponent } from '../element/element.component';
 
@@ -23,8 +24,8 @@ export class TextElementComponent extends ElementComponent implements OnInit {
 
   //#region Lifecycle
 
-  constructor() {
-    super();
+  constructor(injector: Injector) {
+    super(injector);
   }
 
   ngOnInit(): void { }

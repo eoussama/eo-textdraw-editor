@@ -1,6 +1,8 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
+
 import { ResizeEvent } from 'angular-resizable-element';
 import { IResizeable } from 'src/app/shared/interfaces/iresizeable.interface';
+
 import { BoxElement } from '../../../models/elements/box-element';
 import { ElementComponent } from '../element/element.component';
 
@@ -40,8 +42,8 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
 
   //#region Lifecycle
 
-  constructor() {
-    super();
+  constructor(injector: Injector) {
+    super(injector);
   }
 
   ngOnInit(): void {
