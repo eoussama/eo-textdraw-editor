@@ -3,8 +3,8 @@
   class="element__label element--dimension"
   [style.left.px]="dumpElement?.pos.x"
   [style.top.px]="dumpElement?.pos.y">
-  <span>(w: {{ this.dumpElement?.dim?.width | number:'1.0'  }}, h:
-    {{ this.dumpElement?.dim?.height | number:'1.0' }})</span>
+  <span>(w: {{ this.dumpElement?.dim?.width | number:'1.0-0' }}, h:
+    {{ this.dumpElement?.dim?.height | number:'1.0-0' }})</span>
 </div>
 
 <div #elementRef
@@ -36,8 +36,8 @@
     <!-- Position -->
     <div *ngIf="!resizing"
       class="element__label element--position">
-      <span>(x: {{ this.element?.position?.x | number:'1.0'  }}, y:
-        {{ this.element?.position?.y | number:'1.0' }})</span>
+      <span>(x: {{ this.element?.position?.x | number:'1.0-0'  }}, y:
+        {{ this.element?.position?.y | number:'1.0-0' }})</span>
     </div>
   </div>
 
