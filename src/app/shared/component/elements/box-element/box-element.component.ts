@@ -93,18 +93,14 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
     // Marking the element as being resized
     this.resizing = true;
 
-    //  Checking if the dump object is not initialized
-    if (!this.dumpElement) {
+    // Getting the ghost client rect
+    const ghostClientRect = document.querySelector('.resize-ghost-element').getClientRects().item(0);
 
-      // Getting the ghost client rect
-      const ghostClientRect = document.querySelector('.resize-ghost-element').getClientRects().item(0);
-
-      // Initialing the dump object
-      this.dumpElement = {
-        pos: new Position({ x: ghostClientRect?.left - 6, y: ghostClientRect?.top - 26 }),
-        dim: new Dimension({ ...this.element?.dimension })
-      };
-    }
+    // Initialing the dump object
+    this.dumpElement = {
+      pos: new Position({ x: ghostClientRect?.left - 6, y: ghostClientRect?.top - 26 }),
+      dim: new Dimension({ ...this.element?.dimension })
+    };
   }
 
   /**
