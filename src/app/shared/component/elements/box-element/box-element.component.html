@@ -1,3 +1,10 @@
+<!-- Dimensions -->
+<div *ngIf="resizing"
+  class="element__label element--dimension">
+  <span>(w: {{ this.element?.dimension?.width | number:'1.0'  }}, h:
+    {{ this.element?.dimension?.height | number:'1.0' }})</span>
+</div>
+
 <div #elementRef
   mwlResizable
   cdkDrag
@@ -25,7 +32,7 @@
     [@fade]>
 
     <!-- Position -->
-    <div class="element__position">
+    <div class="element__label element--position">
       <span>(x: {{ this.element?.position?.x | number:'1.0'  }}, y:
         {{ this.element?.position?.y | number:'1.0' }})</span>
     </div>
