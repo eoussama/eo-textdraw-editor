@@ -1,0 +1,11 @@
+<div class="root">
+  <aside class="toolbar">
+    <ul class="toolbar__list">
+      <li class="toolbar__item" (click)="onElementClick(ElementType.Box)">B</li>
+      <li class="toolbar__item" (click)="onElementClick(ElementType.Text)">T</li>
+    </ul>
+  </aside>
+  <aside *ngIf="showOptions" class="options">
+    <button>Create element</button>
+  </aside>
+</div>

@@ -1,6 +1,10 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Injector, Input, OnInit } from '@angular/core';
+
 import { ResizeEvent } from 'angular-resizable-element';
 import { IResizeable } from 'src/app/shared/interfaces/iresizeable.interface';
+import { Dimension } from 'src/app/shared/models/dimension/dimension';
+import { Position } from 'src/app/shared/models/position/position';
+
 import { BoxElement } from '../../../models/elements/box-element';
 import { ElementComponent } from '../element/element.component';
 
@@ -32,6 +36,12 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
   drag = false;
 
   /**
+   * Contains dump info of the element used
+   * top display the label when resizing
+   */
+  dumpElement: { dim: Dimension, pos: Position };
+
+  /**
    * The box element object
    */
   @Input() element: BoxElement;
@@ -40,8 +50,8 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
 
   //#region Lifecycle
 
-  constructor() {
-    super();
+  constructor(injector: Injector) {
+    super(injector);
   }
 
   ngOnInit(): void {
@@ -79,6 +89,18 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
 
     // Marking the element as active
     this.active = true;
+
+    // Marking the element as being resized
+    this.resizing = true;
+
+    // Getting the ghost client rect
+    const ghostClientRect = document.querySelector('.resize-ghost-element').getClientRects().item(0);
+
+    // Initialing the dump object
+    this.dumpElement = {
+      pos: new Position({ x: ghostClientRect?.left - 6, y: ghostClientRect?.top - 26 }),
+      dim: new Dimension({ ...this.element?.dimension })
+    };
   }
 
   /**
@@ -86,8 +108,14 @@ export class BoxElementComponent extends ElementComponent implements OnInit, Aft
    */
   onResize(e: ResizeEvent): void {
 
-    // Marking the element as being resized
-    this.resizing = true;
+    // Getting the ghost client rect
+    const ghostClientRect = document.querySelector('.resize-ghost-element').getClientRects().item(0);
+
+    // Updating the dump object
+    this.dumpElement = {
+      pos: new Position({ x: ghostClientRect?.left - 6, y: ghostClientRect?.top - 26 }),
+      dim: new Dimension({ height: e?.rectangle?.height, width: e?.rectangle?.width })
+    };
   }
 
   /**
