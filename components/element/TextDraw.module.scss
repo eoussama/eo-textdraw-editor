@@ -5,7 +5,11 @@
   user-select: none;
   position: absolute;
 
+  outline-color: transparent;
   background-color: rgba(0, 0, 0, 0.37);
+
+  transition-duration: 0.2s;
+  transition-property: outline-color;
 
   &__meta {
     position: absolute;
@@ -18,6 +22,9 @@
 
     opacity: 0;
     white-space: nowrap;
+
+    transition-duration: 0.2s;
+    transition-property: opacity;
   }
 
   &__resizer {
@@ -39,6 +46,9 @@
       right: -4px;
       bottom: -4px;
       position: absolute;
+
+      transition-duration: 0.2s;
+      transition-property: opacity;
     }
   }
 
