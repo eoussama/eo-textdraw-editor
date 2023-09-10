@@ -1,4 +1,4 @@
-import styles from './Home.module.css'
+import styles from './Home.module.scss'
 import { Board } from '../../utils/models/board'
 import BoardComponent from '../../components/board/Board'
 
