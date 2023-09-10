@@ -1,6 +1,58 @@
 .textdraw {
+  --select-color: #1a58a8;
+
   cursor: grab;
   user-select: none;
   position: absolute;
+
   background-color: rgba(0, 0, 0, 0.37);
+
+  &__meta {
+    position: absolute;
+    top: -18px;
+    left: 0;
+
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--select-color);
+
+    opacity: 0;
+    white-space: nowrap;
+  }
+
+  &__resizer {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    .handle {
+      cursor: se-resize;
+
+      width: 8px;
+      height: 8px;
+
+      opacity: 0;
+      border-radius: 4px;
+      background-color: var(--select-color);
+
+      right: -4px;
+      bottom: -4px;
+      position: absolute;
+    }
+  }
+
+  &:hover,
+  &--active {
+    outline: 2px dotted var(--select-color);
+    outline-offset: 2px;
+
+    .textdraw__meta {
+      opacity: 1;
+    }
+
+    .textdraw__resizer .handle {
+      opacity: 0.75;
+    }
+  }
 }

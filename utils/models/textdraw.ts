@@ -15,6 +15,12 @@ export class TextDraw {
 
   /**
    * @description
+   * The name of the element
+   */
+  name: string;
+
+  /**
+   * @description
    * The position of the element on the X axis
    */
   x: number;
@@ -37,7 +43,8 @@ export class TextDraw {
    */
   height: number;
 
-  constructor(props?: Partial<{ id: string, x: number, y: number, width: number, height: number }>) {
+  constructor(props?: Partial<{ id: string, name: string, x: number, y: number, width: number, height: number }>) {
+    this.name = props?.name ?? `elem_${Math.floor(Math.random() * 10000)}`;
     this.id = props?.id ?? uuid4();
     this.x = props?.x ?? 0;
     this.y = props?.y ?? 0;
