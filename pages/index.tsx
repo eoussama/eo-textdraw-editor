@@ -1,6 +1,6 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import HomeHome from './home/Home'
+import Head from 'next/head';
+import type { NextPage } from 'next';
+import EditorPage from './editor/Editor';
 
 
 const Index: NextPage = () => {
@@ -13,7 +13,7 @@ const Index: NextPage = () => {
       </Head>
 
       <main>
-        <HomeHome />
+        <EditorPage />
       </main>
     </div>
   )
