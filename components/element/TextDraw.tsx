@@ -1,14 +1,19 @@
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { ResizableBox } from 'react-resizable';
 import Draggable from 'react-draggable';
 
 import styles from './TextDraw.module.scss'
-
-import { TextDraw } from '../../utils/models/textdraw';
+import { TextDraw } from '../../core/entity/textdraw';
+import { PositionComponent } from '../../core/component/position';
+import { SizeComponent } from '../../core/component/size';
+import { NameComponent } from '../../core/component/name';
 
 
 export default function TextDrawComponent(props: { textdraw: TextDraw, parentRef: MutableRefObject<HTMLDivElement> }) {
   const [textdraw, setTextdraw] = useState(props.textdraw);
+  const textdrawName = useMemo(() => textdraw.getComponent(NameComponent), [textdraw]);
+  const textdrawSize = useMemo(() => textdraw.getComponent(SizeComponent), [textdraw]);
+  const textdrawPos = useMemo(() => textdraw.getComponent(PositionComponent), [textdraw]);
 
   const [minX, setMinX] = useState(0);
   const [maxX, setMaxX] = useState(0);
@@ -25,8 +30,10 @@ export default function TextDrawComponent(props: { textdraw: TextDraw, parentRef
   const [isResizing, setIsResizing] = useState(false);
 
   const onDrag = (_: MouseEvent, e: any) => {
-    textdraw.x = e.x;
-    textdraw.y = e.y;
+    if (textdrawPos) {
+      textdrawPos.x = e.x;
+      textdrawPos.y = e.y;
+    }
 
     setTextdraw(new TextDraw(textdraw));
   }
@@ -34,8 +41,10 @@ export default function TextDrawComponent(props: { textdraw: TextDraw, parentRef
   const onResize = (_: MouseEvent, e: any) => {
     const { size } = e;
 
-    textdraw.width = size.width;
-    textdraw.height = size.height;
+    if (textdrawSize) {
+      textdrawSize.width = size.width;
+      textdrawSize.height = size.height;
+    }
 
     setTextdraw(new TextDraw(textdraw));
   };
@@ -50,48 +59,52 @@ export default function TextDrawComponent(props: { textdraw: TextDraw, parentRef
   useEffect(() => {
     const bounds = props.parentRef.current.getBoundingClientRect();
 
-    setMinY(0);
-    setMinX(bounds.x);
-    setMaxX(bounds.width - textdraw.width);
-    setMaxY(bounds.height - textdraw.height);
-  }, [textdraw.height, textdraw.width]);
+    if (textdrawSize) {
+      setMinY(0);
+      setMinX(bounds.x);
+      setMaxX(bounds.width - textdrawSize.width);
+      setMaxY(bounds.height - textdrawSize.height);
+    }
+  }, [textdrawSize?.width, textdrawSize?.height]);
 
   useEffect(() => {
     const bounds = props.parentRef.current.getBoundingClientRect();
 
-    setMinWidth(10);
-    setMinHeight(10);
-    setMaxWidth(bounds.width - textdraw.x);
-    setMaxHeight(bounds.height - textdraw.y);
-  }, [textdraw.height, textdraw.width]);
+    if (textdrawPos) {
+      setMinWidth(10);
+      setMinHeight(10);
+      setMaxWidth(bounds.width - textdrawPos.x);
+      setMaxHeight(bounds.height - textdrawPos.y);
+    }
+  }, [textdrawPos?.x, textdrawPos?.y]);
 
   return (
     <>
       <Draggable
         onDrag={onDrag}
         onStart={() => !isResizing}
-        defaultPosition={{ x: textdraw.x, y: textdraw.y }}
+        defaultPosition={{ x: textdrawPos?.x, y: textdrawPos?.y }}
         bounds={{ left: minX, right: maxX, top: minY, bottom: maxY }}
       >
         <div
           ref={elementRef}
           className={`${styles.textdraw} ${isActive ? styles['textdraw--active'] : ''}`}
           style={{
-            width: textdraw.width,
-            height: textdraw.height
+            width: textdrawSize?.width,
+            height: textdrawSize?.height
           }}
         >
           <div className={styles['textdraw__meta']}>
-            [{textdraw.name}]
-            {!isResizing && ` (x: ${textdraw.x}, y: ${textdraw.y})`}
-            {isResizing && ` (width: ${textdraw.width}, height: ${textdraw.height})`}
+            [{textdrawName?.name}]
+            {!isResizing && ` (x: ${textdrawPos?.x}, y: ${textdrawPos?.y})`}
+            {isResizing && ` (width: ${textdrawSize?.width}, height: ${textdrawSize?.height})`}
           </div>
 
           <ResizableBox
             onResize={onResize}
             handleSize={[8, 8]}
-            width={textdraw.width}
-            height={textdraw.height}
+            width={textdrawSize?.width}
+            height={textdrawSize?.height}
             minConstraints={[minWidth, minHeight]} maxConstraints={[maxWidth, maxHeight]}
             className={styles['textdraw__resizer']}
             handle={<span

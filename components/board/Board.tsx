@@ -3,9 +3,10 @@ import styles from './Board.module.scss'
 
 import { Board } from '../../utils/models/board';
 import { Layer } from '../../utils/models/layer';
-import { TextDraw } from '../../utils/models/textdraw';
 
 import TextDrawComponent from '../element/TextDraw';
+import { TextDraw } from '../../core/entity/textdraw';
+import { BoxTextDraw } from '../../core/entity/boxTextdraw';
 
 
 export default function BoardComponent(props: { board: Board }) {
@@ -15,8 +16,10 @@ export default function BoardComponent(props: { board: Board }) {
 
   useEffect(() => {
     const layer1 = new Layer();
-    const element1 = new TextDraw({ width: 200, height: 50 });
-    const element2 = new TextDraw({ x: 50, y: 200, width: 100, height: 300 });
+
+    const element1 = new BoxTextDraw({ width: 200, height: 50 });
+    const element2 = new BoxTextDraw({ x: 50, y: 200, width: 100, height: 300 });
+
     if (board.layers.length == 0) {
       layer1.textdraws.push(element2);
       layer1.textdraws.push(element1);

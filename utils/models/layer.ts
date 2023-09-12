@@ -1,5 +1,5 @@
-import { v4 as uuid4 } from "uuid";
-import { TextDraw } from "./textdraw";
+import { v4 as uuid4 } from 'uuid';
+import { TextDraw } from '../../core/entity/textdraw';
 
 
 /**

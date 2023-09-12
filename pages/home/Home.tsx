@@ -5,6 +5,7 @@ import BoardComponent from '../../components/board/Board'
 
 export default function HomeHome() {
   const board = new Board()
+
   return (
     <div>
       <h1>EO TextDraw Editor</h1>
