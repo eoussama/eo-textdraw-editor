@@ -1,18 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './Board.module.scss'
 
-import { Board } from '../../utils/models/board';
 import { Layer } from '../../utils/models/layer';
 
 import TextDrawComponent from '../element/TextDraw';
 import { TextDraw } from '../../core/entity/textdraw';
 import { BoxTextDraw } from '../../core/entity/boxTextdraw';
+import { Board } from '../../core/entity/board';
+import { SizeComponent } from '../../core/component/size';
 
 
 export default function BoardComponent(props: { board: Board }) {
   const elementRef = useRef<any>();
   const [board] = useState(props.board);
   const [elements, setElements] = useState<Array<TextDraw>>([]);
+  const boardSize = useMemo(() => board.getComponent(SizeComponent), [board]);
 
   useEffect(() => {
     const layer1 = new Layer();
@@ -31,7 +33,7 @@ export default function BoardComponent(props: { board: Board }) {
   }, [board.id]);
 
   return (
-    <div className={styles.board} style={{ width: board.width, height: board.height }}>
+    <div className={styles.board} style={{ width: boardSize?.width, height: boardSize?.height }}>
       <div className={styles.board__container} ref={elementRef}>
         {elements.map(e => <TextDrawComponent key={e.id} textdraw={e} parentRef={elementRef} />)}
       </div>

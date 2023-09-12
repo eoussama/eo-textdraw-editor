@@ -1,10 +1,10 @@
-import { Board } from '../../utils/models/board';
-import BoardComponent from '../board/Board';
 import styles from './Editor.module.scss';
+import BoardComponent from '../board/Board';
+import { Board } from '../../core/entity/board';
 
 
 export default function Editor() {
-  const board = new Board();
+  const board = new Board({ width: 1080, height: 720 });
 
   return (
     <div className={styles['root']}>
