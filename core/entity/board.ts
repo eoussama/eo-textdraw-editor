@@ -1,6 +1,7 @@
 import { Entity } from '.';
-import { Layer } from '../../utils/models/layer';
+import { TextDraw } from './textdraw';
 import { SizeComponent } from '../component/size';
+import { TBoardProps } from '../utils/types/props/boardProps.type';
 
 
 /**
@@ -13,12 +14,12 @@ export class Board extends Entity {
    * @description
    * The collection of layers
    */
-  layers: Array<Layer>
+  textdraws: Array<TextDraw>;
 
-  constructor(props?: any) {
-    super(props);
+  constructor(props?: Partial<TBoardProps>) {
+    super(props?.id);
 
-    this.layers = props?.layers ?? [];
-    this.addComponent(new SizeComponent(props?.width, props?.height));
+    this.textdraws = props?.textdraws ?? [];
+    this.addComponent(new SizeComponent(props?.width ?? 100, props?.height ?? 100));
   }
 }

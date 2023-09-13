@@ -1,4 +1,4 @@
-import { generateNumber } from '../math/random';
+import { generateNumber } from '../math/random.helper';
 
 
 /**

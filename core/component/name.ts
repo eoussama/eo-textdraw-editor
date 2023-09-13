@@ -1,5 +1,5 @@
 import { Component } from '.';
-import { generateName } from '../utils/helpers/string/name';
+import { generateName } from '../utils/helpers/string/name.helper';
 
 
 /**

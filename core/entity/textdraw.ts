@@ -2,6 +2,7 @@ import { Entity } from '.';
 import { NameComponent } from '../component/name';
 import { SizeComponent } from '../component/size';
 import { PositionComponent } from '../component/position';
+import { TTextDrawProps } from '../utils/types/props/textdrawProps.type';
 
 
 /**
@@ -10,11 +11,11 @@ import { PositionComponent } from '../component/position';
  */
 export class TextDraw extends Entity {
 
-  constructor(props: any) {
-    super(props);
+  constructor(props?: Partial<TTextDrawProps>) {
+    super(props?.id);
 
-    this.addComponent(new NameComponent(props.name));
-    this.addComponent(new PositionComponent(props.x, props.y));
-    this.addComponent(new SizeComponent(props.width, props.height));
+    this.addComponent(new NameComponent(props?.name));
+    this.addComponent(new PositionComponent(props?.x, props?.y));
+    this.addComponent(new SizeComponent(props?.width, props?.height));
   }
 }

@@ -1,16 +1,17 @@
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ResizableBox } from 'react-resizable';
 import Draggable from 'react-draggable';
 
 import styles from './TextDraw.module.scss'
-import { TextDraw } from '../../core/entity/textdraw';
 import { PositionComponent } from '../../core/component/position';
 import { SizeComponent } from '../../core/component/size';
 import { NameComponent } from '../../core/component/name';
+import { TTextDrawComponentProps } from '../../core/utils/types/props/textdrawComponenetProps.type';
+import { TextdrawSystem } from '../../core/system/textdraw';
 
 
-export default function TextDrawComponent(props: { textdraw: TextDraw, parentRef: MutableRefObject<HTMLDivElement> }) {
-  const [textdraw, setTextdraw] = useState(props.textdraw);
+export default function TextDrawComponent(props: TTextDrawComponentProps) {
+  const [textdraw] = useState(props.textdraw);
   const textdrawName = useMemo(() => textdraw.getComponent(NameComponent), [textdraw]);
   const textdrawSize = useMemo(() => textdraw.getComponent(SizeComponent), [textdraw]);
   const textdrawPos = useMemo(() => textdraw.getComponent(PositionComponent), [textdraw]);
@@ -35,7 +36,7 @@ export default function TextDrawComponent(props: { textdraw: TextDraw, parentRef
       textdrawPos.y = e.y;
     }
 
-    setTextdraw(new TextDraw(textdraw));
+    TextdrawSystem.update(textdraw);
   }
 
   const onResize = (_: MouseEvent, e: any) => {
@@ -46,7 +47,7 @@ export default function TextDrawComponent(props: { textdraw: TextDraw, parentRef
       textdrawSize.height = size.height;
     }
 
-    setTextdraw(new TextDraw(textdraw));
+    TextdrawSystem.update(textdraw);
   };
 
   useEffect(() => {

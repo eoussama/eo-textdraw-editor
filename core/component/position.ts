@@ -1,5 +1,5 @@
 import { Component } from '.';
-import { clamp } from '../utils/helpers/math/clamp';
+import { clamp } from '../utils/helpers/math/clamp.helper';
 
 
 /**
@@ -20,7 +20,7 @@ export class PositionComponent extends Component {
    */
   y: number;
 
-  constructor(x: number, y: number) {
+  constructor(x?: number, y?: number) {
     super();
   
     this.x = clamp(x ?? 0, 0);

@@ -1,10 +1,10 @@
 import styles from './Editor.module.scss';
 import BoardComponent from '../board/Board';
-import { Board } from '../../core/entity/board';
+import { useBoardStore } from '../../core/store/board';
 
 
-export default function Editor() {
-  const board = new Board({ width: 1080, height: 720 });
+export default function EditorComponent() {
+  const board = useBoardStore((state) => state.active);
 
   return (
     <div className={styles['root']}>
@@ -16,7 +16,7 @@ export default function Editor() {
         <div className={styles['center']}>
           <div className={styles['meta']}></div>
           <div className={styles['content']}>
-            <BoardComponent board={board} />
+            {board && <BoardComponent board={board} />}
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import { TNullable } from './nullable';
+import { TNullable } from './nullable.type';
 
 
 /**

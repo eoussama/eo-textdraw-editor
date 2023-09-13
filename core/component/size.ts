@@ -1,5 +1,5 @@
 import { Component } from '.';
-import { clamp } from '../utils/helpers/math/clamp';
+import { clamp } from '../utils/helpers/math/clamp.helper';
 
 
 /**
@@ -20,7 +20,7 @@ export class SizeComponent extends Component {
    */
   height: number;
 
-  constructor(width: number, height: number) {
+  constructor(width?: number, height?: number) {
     super();
   
     this.width = clamp(width ?? 0, 0);

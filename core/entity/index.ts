@@ -1,7 +1,7 @@
 import { v4 as uuid4 } from 'uuid';
 import { Component } from '../component';
-import { TUnsafe } from '../utils/types/generic/unsafe';
-import { TClassType } from '../utils/types/generic/class';
+import { TUnsafe } from '../utils/types/generic/unsafe.type';
+import { TClassType } from '../utils/types/generic/class.type';
 
 
 /**
@@ -69,5 +69,21 @@ export class Entity {
    */
   getComponent<T extends TClassType<Component>>(componentType: T) {
     return this.components.find(c => c instanceof componentType) as TUnsafe<InstanceType<T>>;
+  }
+
+  /**
+   * @description
+   * Converts instance to props
+   */
+  toProps<T = any>(): T {
+    const pairs = Object.entries(this).filter(pair => pair[0] !== 'components');
+    let output = pairs.reduce((acc, cur) => ({ ...acc, [cur[0] as any]: cur[1] }), {});
+
+    for (const component of this.components) {
+      const props = component.toProps();
+      output = { ...output, ...props };
+    }
+
+    return output as T;
   }
 }
