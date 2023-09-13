@@ -1,8 +1,11 @@
+import { BoardSystem } from './board';
 import { Board } from '../entity/board';
 import { TextDraw } from '../entity/textdraw';
 import { TClassType } from '../utils/types/generic/class.type';
+import { TNullable } from '../utils/types/generic/nullable.type';
 import { TTextDrawProps } from '../utils/types/props/textdrawProps.type';
-import { BoardSystem } from './board';
+import { useBoardStore } from '../store/board';
+import { useTextDrawStore } from '../store/textdraw';
 
 
 /**
@@ -47,6 +50,34 @@ export class TextdrawSystem {
 
       board.textdraws = [...start, current, ...end];
       BoardSystem.update(board);
+    }
+  }
+
+  /**
+   * @description
+   * Retreives a textdraw by ID
+   *
+   * @param textdrawId The ID of the textdraw to return
+   */
+  static get(textdrawId: string): TNullable<TextDraw> {
+    const boards = useBoardStore.getState().boards;
+    return boards.flatMap(b => b.textdraws).find(t => t.id === textdrawId) ?? null;
+  }
+
+  /**
+   * @description
+   * Sets a textdraw as active
+   *
+   * @param textdrawId The ID of the textdraw to set active
+   */
+  static setActive(textdrawId: TNullable<string>): void {
+    const setActive = useTextDrawStore.getState().setActive;
+
+    if (textdrawId) {
+      const textdraw = this.get(textdrawId);
+      setActive(textdraw);
+    } else {
+      setActive(null);
     }
   }
 }

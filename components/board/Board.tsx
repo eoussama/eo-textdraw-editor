@@ -10,7 +10,6 @@ export default function BoardComponent(props: TBoardComponentProps) {
   const elementRef = useRef<any>();
   const boardSize = useMemo(() => board.getComponent(SizeComponent), [board]);
 
-
   return (
     <div className={styles['board']} style={{ width: boardSize?.width, height: boardSize?.height }}>
       <div className={styles.board__container} ref={elementRef}>

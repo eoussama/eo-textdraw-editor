@@ -52,6 +52,10 @@
     }
   }
 
+  &:active {
+    cursor: grabbing;
+  }
+
   &:hover,
   &--active {
     outline: 2px dotted var(--select-color);

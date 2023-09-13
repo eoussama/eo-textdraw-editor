@@ -9,11 +9,13 @@ import { TextdrawSystem } from '../../core/system/textdraw';
 export default function EditorPage() {
   useEffect(() => {
     const board1 = BoardSystem.create({ width: 1080, height: 720 });
-    const board2 = BoardSystem.create({ width: 1920, height: 1080 });
+    const board2 = BoardSystem.create({ width: 1080, height: 800 });
 
     BoardSystem.setActive(board1.id);
+    
     TextdrawSystem.create(board1, BoxTextDraw, { width: 200, height: 50 });
     TextdrawSystem.create(board1, BoxTextDraw, { x: 50, y: 200, width: 100, height: 300 });
+    TextdrawSystem.create(board2, BoxTextDraw, { x: 400, y: 500, width: 200, height: 50 });
   }, []);
 
   return (
