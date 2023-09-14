@@ -1,13 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { ResizableBox } from 'react-resizable';
 import Draggable from 'react-draggable';
 
 import styles from './TextDraw.module.scss';
 import { useDrag } from '../../hooks/drag.hook';
 import { useResize } from '../../hooks/resize.hook';
+import { useActive } from '../../hooks/active.hook';
 import { NameComponent } from '../../core/component/name';
 import { TTextDrawComponentProps } from '../../core/utils/types/props/textdrawComponenetProps.type';
-import { useActive } from '../../hooks/active.hook';
 
 
 export default function TextDrawComponent(props: TTextDrawComponentProps) {
@@ -23,6 +23,7 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
     <>
       <Draggable
         onDrag={onDrag}
+        nodeRef={elementRef}
         disabled={isResizing}
         defaultPosition={{ x: x, y: y }}
         bounds={{ left: minX, right: maxX, top: minY, bottom: maxY }}

@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react';
 import styles from './Board.module.scss';
-import TextDrawComponent from '../element/TextDraw';
+import TextDrawComponent from '../textdraw/TextDraw';
 import { SizeComponent } from '../../core/component/size';
 import { TBoardComponentProps } from '../../core/utils/types/props/boardComponentProps.type';
 
