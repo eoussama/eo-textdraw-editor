@@ -58,8 +58,8 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
             onResize={onResize}
             onResizeStop={() => setIsResizing(false)}
             handleSize={[8, 8]}
-            width={width}
-            height={height}
+            width={textdrawtext ? 0 : width}
+            height={textdrawtext ? 0 : height}
             minConstraints={[minWidth, minHeight]} maxConstraints={[maxWidth, maxHeight]}
             className={styles['textdraw__resizer']}
             handle={
