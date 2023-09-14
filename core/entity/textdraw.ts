@@ -5,6 +5,7 @@ import { ScopeComponent } from '../component/scope';
 import { PositionComponent } from '../component/position';
 import { TTextDrawProps } from '../utils/types/props/textdrawProps.type';
 import { AnchorComponent } from '../component/anchor';
+import { HighlightComponent } from '../component/highlight';
 
 
 /**
@@ -21,5 +22,6 @@ export class TextDraw extends Entity {
     this.addComponent(new ScopeComponent(props));
     this.addComponent(new AnchorComponent(props));
     this.addComponent(new PositionComponent(props));
+    this.addComponent(new HighlightComponent(props));
   }
 }
