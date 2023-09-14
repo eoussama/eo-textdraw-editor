@@ -1,5 +1,6 @@
 import { Component } from '.';
 import { clamp } from '../utils/helpers/math/clamp.helper';
+import { TPositionProps } from '../utils/types/props/positionProps.type';
 
 
 /**
@@ -12,18 +13,18 @@ export class PositionComponent extends Component {
    * @description
    * The position of the element on the X axis
    */
-  x: number;
+  posX: number;
 
   /**
    * @description
-   * The position of the element on the Z axis
+   * The position of the element on the Y axis
    */
-  y: number;
+  posY: number;
 
-  constructor(x?: number, y?: number) {
+  constructor(props?: Partial<TPositionProps>) {
     super();
-  
-    this.x = clamp(x ?? 0, 0);
-    this.y = clamp(y ?? 0, 0);
+
+    this.posX = clamp(props?.posX ?? 0, 0);
+    this.posY = clamp(props?.posY ?? 0, 0);
   }
 }

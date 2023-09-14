@@ -1,5 +1,6 @@
 import { Component } from '.';
 import { clamp } from '../utils/helpers/math/clamp.helper';
+import { TSizeProps } from '../utils/types/props/sizeProps.type';
 
 
 /**
@@ -12,18 +13,18 @@ export class SizeComponent extends Component {
    * @description
    * The width of the textdraw
    */
-  width: number;
+  sizeWidth: number;
 
   /**
    * @description
    * The height of the textdraw
    */
-  height: number;
+  sizeHeight: number;
 
-  constructor(width?: number, height?: number) {
+  constructor(props?: Partial<TSizeProps>) {
     super();
   
-    this.width = clamp(width ?? 0, 0);
-    this.height = clamp(height ?? 0, 0);
+    this.sizeWidth = clamp(props?.sizeWidth ?? 0, 0);
+    this.sizeHeight = clamp(props?.sizeHeight ?? 0, 0);
   }
 }

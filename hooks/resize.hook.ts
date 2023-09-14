@@ -26,8 +26,8 @@ export function useResize(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDi
     const { size } = e;
 
     if (textdrawSize) {
-      textdrawSize.width = size.width;
-      textdrawSize.height = size.height;
+      textdrawSize.sizeWidth = size.width;
+      textdrawSize.sizeHeight = size.height;
     }
 
     setIsResizing(true);
@@ -40,10 +40,10 @@ export function useResize(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDi
     if (textdrawPos) {
       setMinWidth(10);
       setMinHeight(10);
-      setMaxWidth(bounds.width - textdrawPos.x);
-      setMaxHeight(bounds.height - textdrawPos.y);
+      setMaxWidth(bounds.width - textdrawPos.posX);
+      setMaxHeight(bounds.height - textdrawPos.posY);
     }
-  }, [textdrawPos?.x, textdrawPos?.y]);
+  }, [textdrawPos?.posX, textdrawPos?.posY]);
 
-  return { minWidth, maxWidth, minHeight, maxHeight, isResizing, width: textdrawSize?.width ?? 0, height: textdrawSize?.height ?? 0, setIsResizing, onResize };
+  return { minWidth, maxWidth, minHeight, maxHeight, isResizing, width: textdrawSize?.sizeWidth ?? 0, height: textdrawSize?.sizeHeight ?? 0, setIsResizing, onResize };
 }

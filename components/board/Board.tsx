@@ -11,7 +11,7 @@ export default function BoardComponent(props: TBoardComponentProps) {
   const boardSize = useMemo(() => board.getComponent(SizeComponent), [board]);
 
   return (
-    <div className={styles['board']} style={{ width: boardSize?.width, height: boardSize?.height }}>
+    <div className={styles['board']} style={{ width: boardSize?.sizeWidth, height: boardSize?.sizeHeight }}>
       <div className={styles.board__container} ref={elementRef}>
         {board.textdraws.map(e => <TextDrawComponent key={e.id} textdraw={e} parentRef={elementRef} />)}
       </div>

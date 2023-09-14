@@ -1,5 +1,6 @@
 import { Component } from '.';
 import { TextDrawScope } from '../utils/enums/textdrawScope.enum';
+import { TScopeProps } from '../utils/types/props/scopeProps.type';
 
 
 /**
@@ -14,8 +15,8 @@ export class ScopeComponent extends Component {
    */
   scope: TextDrawScope;
 
-  constructor(scope?: TextDrawScope) {
+  constructor(props?: Partial<TScopeProps>) {
     super();
-    this.scope = scope ?? TextDrawScope.Global;
+    this.scope = props?.scope ?? TextDrawScope.Global;
   }
 }

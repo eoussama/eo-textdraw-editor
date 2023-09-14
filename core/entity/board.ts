@@ -17,9 +17,9 @@ export class Board extends Entity {
   textdraws: Array<TextDraw>;
 
   constructor(props?: Partial<TBoardProps>) {
-    super(props?.id);
+    super(props);
 
     this.textdraws = props?.textdraws ?? [];
-    this.addComponent(new SizeComponent(props?.width ?? 100, props?.height ?? 100));
+    this.addComponent(new SizeComponent(props));
   }
 }

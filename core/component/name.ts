@@ -1,4 +1,5 @@
 import { Component } from '.';
+import { TNameProps } from '../utils/types/props/nameProps.type';
 import { generateName } from '../utils/helpers/string/name.helper';
 
 
@@ -14,8 +15,8 @@ export class NameComponent extends Component {
    */
   name: string;
 
-  constructor(name?: string) {
+  constructor(props?: Partial<TNameProps>) {
     super();
-    this.name = name ?? generateName('textdraw');
+    this.name = props?.name ?? generateName('textdraw');
   }
 }

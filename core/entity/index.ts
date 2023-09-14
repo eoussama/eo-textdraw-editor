@@ -2,6 +2,7 @@ import { v4 as uuid4 } from 'uuid';
 import { Component } from '../component';
 import { TUnsafe } from '../utils/types/generic/unsafe.type';
 import { TClassType } from '../utils/types/generic/class.type';
+import { TEntityProps } from '../utils/types/props/entityProps.type';
 
 
 /**
@@ -22,8 +23,8 @@ export class Entity {
    */
   components: Array<Component>;
 
-  constructor(id?: string) {
-    this.id = id ?? uuid4();
+  constructor(props?: Partial<TEntityProps>) {
+    this.id = props?.id ?? uuid4();
     this.components = [];
   }
 

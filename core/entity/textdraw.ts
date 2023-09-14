@@ -13,11 +13,11 @@ import { TTextDrawProps } from '../utils/types/props/textdrawProps.type';
 export class TextDraw extends Entity {
 
   constructor(props?: Partial<TTextDrawProps>) {
-    super(props?.id);
+    super(props);
 
-    this.addComponent(new NameComponent(props?.name));
-    this.addComponent(new ScopeComponent(props?.scope));
-    this.addComponent(new PositionComponent(props?.x, props?.y));
-    this.addComponent(new SizeComponent(props?.width, props?.height));
+    this.addComponent(new NameComponent(props));
+    this.addComponent(new SizeComponent(props));
+    this.addComponent(new ScopeComponent(props));
+    this.addComponent(new PositionComponent(props));
   }
 }

@@ -24,8 +24,8 @@ export function useDrag(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDivE
 
   const onDrag = (_: DraggableEvent, data: DraggableData) => {
     if (textdrawPos) {
-      textdrawPos.x = data.x;
-      textdrawPos.y = data.y;
+      textdrawPos.posX = data.x;
+      textdrawPos.posY = data.y;
     }
 
     TextdrawSystem.update(textdraw);
@@ -37,10 +37,10 @@ export function useDrag(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDivE
     if (textdrawSize) {
       setMinY(0);
       setMinX(bounds.x);
-      setMaxX(bounds.width - textdrawSize.width);
-      setMaxY(bounds.height - textdrawSize.height);
+      setMaxX(bounds.width - textdrawSize.sizeWidth);
+      setMaxY(bounds.height - textdrawSize.sizeHeight);
     }
-  }, [textdrawSize?.width, textdrawSize?.height]);
+  }, [textdrawSize?.sizeWidth, textdrawSize?.sizeHeight]);
 
-  return { minX, maxX, minY, maxY, x: textdrawPos?.x ?? 0, y: textdrawPos?.y ?? 0, onDrag };
+  return { minX, maxX, minY, maxY, x: textdrawPos?.posX ?? 0, y: textdrawPos?.posY ?? 0, onDrag };
 }

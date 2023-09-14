@@ -1,3 +1,5 @@
+import { TSizeProps } from './sizeProps.type';
+import { TEntityProps } from './entityProps.type';
 import { TextDraw } from '../../../entity/textdraw';
 
 
@@ -5,25 +7,7 @@ import { TextDraw } from '../../../entity/textdraw';
  * @description
  * Board properties
  */
-export type TBoardProps = {
-
-  /**
-   * @description
-   * The ID of the board
-   */
-  id: string
-
-  /**
-   * @description
-   * The width of the board
-   */
-  width: number
-
-  /**
-   * @description
-   * The height of the board
-   */
-  height: number
+export type TBoardProps = TEntityProps & TSizeProps & {
 
   /**
    * @description
