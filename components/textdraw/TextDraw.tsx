@@ -8,6 +8,7 @@ import { useResize } from '../../hooks/resize.hook';
 import { useActive } from '../../hooks/active.hook';
 import { BoxComponent } from '../../core/component/box';
 import { NameComponent } from '../../core/component/name';
+import { TextComponent } from '../../core/component/text';
 import { TTextDrawComponentProps } from '../../core/utils/types/props/textdrawComponenetProps.type';
 
 
@@ -15,6 +16,7 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
   const elementRef = useRef() as any;
   const [textdraw] = useState(props.textdraw);
   const textdrawBox = useMemo(() => textdraw.getComponent(BoxComponent), [textdraw]);
+  const textdrawtext = useMemo(() => textdraw.getComponent(TextComponent), [textdraw]);
   const textdrawName = useMemo(() => textdraw.getComponent(NameComponent), [textdraw]);
 
   const { isActive } = useActive(textdraw, elementRef);
@@ -33,11 +35,11 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
         <div
           id={textdraw.id}
           ref={elementRef}
-          className={`textdraw ${styles.textdraw} ${isActive ? styles['textdraw--active'] : ''}`}
+          className={`textdraw ${styles['textdraw']} ${textdrawtext ? styles['textdraw--text'] : styles['textdraw--box']} ${isActive ? styles['textdraw--active'] : ''}`}
           style={{
             width: width,
             height: height,
-            backgroundColor: textdrawBox?.boxColor
+            backgroundColor: textdrawBox?.useBox ? textdrawBox?.boxColor : 'transparent'
           }}
         >
           <div className={styles['textdraw__meta']}>
@@ -45,6 +47,12 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
             {!isResizing && ` (x: ${x}, y: ${y})`}
             {isResizing && ` (width: ${width}, height: ${height})`}
           </div>
+
+          {textdrawtext &&
+            <div className={styles['textdraw__text']}>
+              {textdrawtext?.text}
+            </div>
+          }
 
           <ResizableBox
             onResize={onResize}
@@ -54,11 +62,14 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
             height={height}
             minConstraints={[minWidth, minHeight]} maxConstraints={[maxWidth, maxHeight]}
             className={styles['textdraw__resizer']}
-            handle={<span
-              className={styles['handle']}
-              onMouseEnter={() => setIsResizing(true)}
-              onMouseLeave={() => setIsResizing(false)}
-            />}>
+            handle={
+              !textdrawtext &&
+              <span
+                className={styles['handle']}
+                onMouseEnter={() => setIsResizing(true)}
+                onMouseLeave={() => setIsResizing(false)}
+              />
+            }>
           </ResizableBox>
         </div>
       </Draggable>

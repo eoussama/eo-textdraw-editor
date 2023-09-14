@@ -50,6 +50,13 @@
     }
   }
 
+  &--box {}
+
+  &--text {
+    width: auto !important;
+    height: auto !important;
+  }
+
   &:active {
     cursor: grabbing;
   }

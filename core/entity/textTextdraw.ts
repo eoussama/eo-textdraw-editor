@@ -7,7 +7,7 @@ import { TTextTextDrawProps } from '../utils/types/props/textTextdrawProps.type'
  * @description
  * The text textdraw entity
  */
-export class TextBoxTextDraw extends BoxTextDraw {
+export class TextTextDraw extends BoxTextDraw {
 
   constructor(props?: Partial<TTextTextDrawProps>) {
     if (props && !('useBox' in props)) {
