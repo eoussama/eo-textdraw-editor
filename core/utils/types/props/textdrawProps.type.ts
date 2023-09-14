@@ -1,4 +1,4 @@
-import { TextDraw } from '../../../entity/textdraw';
+import { TextDrawScope } from '../../enums/textdrawScope.enum';
 
 
 /**
@@ -42,4 +42,10 @@ export type TTextDrawProps = {
    * The y position of the textdraw
    */
   y: number
+
+  /**
+   * @description
+   * The scope of the textdraw
+   */
+  scope: TextDrawScope
 }
