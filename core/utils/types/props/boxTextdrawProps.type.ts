@@ -4,6 +4,6 @@ import { TTextDrawProps } from './textdrawProps.type';
 
 /**
  * @description
- * Textdraw properties
+ * Box Textdraw properties
  */
 export type TBoxTextDrawProps = TTextDrawProps & TBoxProps;
