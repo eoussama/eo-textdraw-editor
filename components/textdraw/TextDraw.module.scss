@@ -5,10 +5,8 @@
   user-select: none;
   position: absolute;
 
-  outline-color: transparent;
-  background-color: rgba(0, 0, 0, 0.37);
-
   transition-duration: 0.2s;
+  outline-color: transparent;
   transition-property: outline-color;
 
   &__meta {

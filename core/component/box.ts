@@ -24,6 +24,6 @@ export class BoxComponent extends Component {
     super();
 
     this.useBox = props?.useBox ?? true;
-    this.boxColor = props?.boxColor ?? '#000000FF';
+    this.boxColor = props?.boxColor ?? '#000000AA';
   }
 }
