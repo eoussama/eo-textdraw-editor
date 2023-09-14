@@ -15,4 +15,10 @@ export type THighlightProps = {
    * The size of the shadow of the entity
    */
   shadowSize: number;
+
+  /**
+   * @description
+   * The color of the highlight of the entity
+   */
+  highlightColor: string;
 }

@@ -20,10 +20,17 @@ export class HighlightComponent extends Component {
    */
   shadowSize: number;
 
+  /**
+   * @description
+   * The color of the highlight of the entity
+   */
+  highlightColor: string;
+
   constructor(props?: Partial<THighlightProps>) {
     super();
 
     this.shadowSize = props?.shadowSize ?? 0;
     this.outlineSize = props?.outlineSize ?? 0;
+    this.highlightColor = props?.highlightColor ?? '#ffffff00';
   }
 }
