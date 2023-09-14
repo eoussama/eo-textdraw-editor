@@ -9,4 +9,10 @@ export type THighlightProps = {
    * The size of the outline of the entity
    */
   outlineSize: number;
+
+  /**
+   * @description
+   * The size of the shadow of the entity
+   */
+  shadowSize: number;
 }
