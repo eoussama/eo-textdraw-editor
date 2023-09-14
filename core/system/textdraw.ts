@@ -19,9 +19,10 @@ export class TextdrawSystem {
    * Creates a new textdraw
    *
    * @param textdrawType The class type of the textdraw to create
+   * @param board The board to affect the textdraw to
    * @param props The default properties
    */
-  static create<T extends TextDraw, U extends TTextDrawProps>(board: Board, textdrawType: TClassType<T>, props: Partial<U>): T {
+  static create<T extends TextDraw, U extends TTextDrawProps>(textdrawType: TClassType<T>, board: Board, props: Partial<U>): T {
     const textdraw = new textdrawType(props);
 
     board.textdraws.push(textdraw);

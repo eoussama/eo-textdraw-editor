@@ -13,9 +13,9 @@ export default function EditorPage() {
 
     BoardSystem.setActive(board1.id);
     
-    TextdrawSystem.create(board1, BoxTextDraw, { width: 200, height: 50 });
-    TextdrawSystem.create(board1, BoxTextDraw, { x: 50, y: 200, width: 100, height: 300 });
-    TextdrawSystem.create(board2, BoxTextDraw, { x: 400, y: 500, width: 200, height: 50 });
+    TextdrawSystem.create(BoxTextDraw, board1, { width: 200, height: 50 });
+    TextdrawSystem.create(BoxTextDraw, board1, { x: 50, y: 200, width: 100, height: 300 });
+    TextdrawSystem.create(BoxTextDraw, board2, { x: 400, y: 500, width: 200, height: 50 });
   }, []);
 
   return (
