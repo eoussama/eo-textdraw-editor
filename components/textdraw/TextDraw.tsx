@@ -10,6 +10,7 @@ import { TextComponent } from '../../core/component/text';
 import { useDraggable } from '../../hooks/draggable.hook';
 import { useResizeable } from '../../hooks/resizeable.hook';
 import { TTextDrawComponentProps } from '../../core/utils/types/props/textdrawComponenetProps.type';
+import { TextDrawFont } from '../../core/utils/enums/textdrawFont.enum';
 
 
 export default function TextDrawComponent(props: TTextDrawComponentProps) {
@@ -41,9 +42,19 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
     styles['textdraw__meta']
   ].join(' ');
 
+  const fontClass = {
+    [TextDrawFont.Stylized]: 'stylized',
+    [TextDrawFont.Normal]: 'normal',
+    [TextDrawFont.Thin]: 'thin',
+    [TextDrawFont.Bold]: 'bold',
+    [TextDrawFont.Sprite]: 'sprite',
+    [TextDrawFont.Model]: 'model'
+  }[textdrawtext?.font ?? TextDrawFont.Normal]
+
   const textClasses = [
     'textdraw__text',
-    styles['textdraw__text']
+    styles['textdraw__text'],
+    styles[`textdraw--font-${fontClass}`]
   ].join(' ');
 
   return (

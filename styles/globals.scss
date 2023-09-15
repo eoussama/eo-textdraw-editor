@@ -24,3 +24,23 @@ a {
     background: black;
   }
 }
+
+@font-face {
+  font-family: 'Font Stylized';
+  src: url('../public/fonts/stylized.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Font Bold';
+  src: url('../public/fonts/bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Font Thin';
+  src: url('../public/fonts/thin.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Font Normal';
+  src: url('../public/fonts/normal.otf') format('opentype');
+}

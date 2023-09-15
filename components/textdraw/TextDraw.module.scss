@@ -58,13 +58,25 @@
 
   &--text {
     .textdraw--font {
-      &-stylized {}
+      &-stylized {
+        font-family: 'Font Stylized';
+      }
       
-      &-normal {}
+      &-normal {
+        font-family: 'Font Normal';
+      }
       
-      &-thin {}
+      &-thin {
+        font-family: 'Font Thin';
+      }
       
-      &-bold {}
+      &-bold {
+        font-family: 'Font Bold';
+      }
+
+      &-sprite {}
+
+      &-model {}
     }
   }
 
