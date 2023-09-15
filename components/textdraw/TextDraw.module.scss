@@ -54,7 +54,9 @@
     width: fit-content;
   }
 
-  &--box {}
+  &--box {
+    font-family: unset;
+  }
 
   &--text {
     .textdraw--font {

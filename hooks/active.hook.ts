@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { TextDraw } from '../core/entity/textdraw';
 import { TextdrawSystem } from '../core/system/textdraw';
 import { useTextDrawStore } from '../core/store/textdraw';
@@ -10,7 +10,7 @@ import { useTextDrawStore } from '../core/store/textdraw';
  *
  * @param textdraw The target textdraw
  */
-export function useActive(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDivElement>) {
+export function useActive(textdraw: TextDraw) {
   const active = useTextDrawStore(state => state.active);
   const isActive = useMemo(() => active?.id === textdraw.id, [active]);
 

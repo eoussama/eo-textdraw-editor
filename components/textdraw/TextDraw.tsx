@@ -2,15 +2,13 @@ import { CSSProperties, useMemo, useState } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 
-import styles from './TextDraw.module.scss';
-import { useActive } from '../../hooks/active.hook';
 import { BoxComponent } from '../../core/component/box';
+import { useTextdraw } from '../../hooks/textdraw.hook';
 import { NameComponent } from '../../core/component/name';
 import { TextComponent } from '../../core/component/text';
 import { useDraggable } from '../../hooks/draggable.hook';
 import { useResizeable } from '../../hooks/resizeable.hook';
 import { TTextDrawComponentProps } from '../../core/utils/types/props/textdrawComponenetProps.type';
-import { TextDrawFont } from '../../core/utils/enums/textdrawFont.enum';
 
 
 export default function TextDrawComponent(props: TTextDrawComponentProps) {
@@ -21,7 +19,7 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
 
   const { width, height, isResizing, props: resizeableProps } = useResizeable(textdraw, props.parentRef);
   const { x, y, props: draggableProps } = useDraggable(textdraw, props.parentRef, isResizing);
-  const { isActive } = useActive(textdraw, draggableProps.nodeRef);
+  const { textdrawClasses, metaClasses, textClasses } = useTextdraw(textdraw);
 
   const textdrawStyles: CSSProperties = {
     width,
@@ -29,33 +27,6 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
     color: textdrawtext?.textColor,
     backgroundColor: textdrawBox?.useBox ? textdrawBox?.boxColor : 'transparent'
   };
-
-  const textdrawClasses = [
-    'textdraw',
-    styles['textdraw'],
-    isActive ? styles['textdraw--active'] : '',
-    textdrawtext ? styles['textdraw--text'] : styles['textdraw--box']
-  ].join(' ');
-
-  const metaClasses = [
-    'textdraw__meta',
-    styles['textdraw__meta']
-  ].join(' ');
-
-  const fontClass = {
-    [TextDrawFont.Stylized]: 'stylized',
-    [TextDrawFont.Normal]: 'normal',
-    [TextDrawFont.Thin]: 'thin',
-    [TextDrawFont.Bold]: 'bold',
-    [TextDrawFont.Sprite]: 'sprite',
-    [TextDrawFont.Model]: 'model'
-  }[textdrawtext?.font ?? TextDrawFont.Normal]
-
-  const textClasses = [
-    'textdraw__text',
-    styles['textdraw__text'],
-    styles[`textdraw--font-${fontClass}`]
-  ].join(' ');
 
   return (
     <>
