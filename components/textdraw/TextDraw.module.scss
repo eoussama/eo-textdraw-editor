@@ -56,7 +56,17 @@
 
   &--box {}
 
-  &--text {}
+  &--text {
+    .textdraw--font {
+      &-stylized {}
+      
+      &-normal {}
+      
+      &-thin {}
+      
+      &-bold {}
+    }
+  }
 
   &:active {
     cursor: grabbing;

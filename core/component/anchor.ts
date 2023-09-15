@@ -1,6 +1,6 @@
 import { Component } from '.';
 import { TAnchorProps } from '../utils/types/props/anchorProps.type';
-import { TTextDrawAlignment } from '../utils/enums/textdrawAlignment.type';
+import { TTextDrawAlignment } from '../utils/enums/textdrawAlignment.enum';
 
 
 /**

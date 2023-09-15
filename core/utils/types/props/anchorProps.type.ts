@@ -1,4 +1,4 @@
-import { TTextDrawAlignment } from '../../enums/textdrawAlignment.type'
+import { TTextDrawAlignment } from '../../enums/textdrawAlignment.enum'
 
 
 /**

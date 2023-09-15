@@ -1,4 +1,5 @@
 import { Component } from '.';
+import { TextDrawFont } from '../utils/enums/textdrawFont.enum';
 import { TTextProps } from '../utils/types/props/textProps.type';
 
 
@@ -12,7 +13,13 @@ export class TextComponent extends Component {
    * @description
    * The text of the entity
    */
-  text: string
+  text: string;
+
+  /**
+   * @description
+   * The font of the text of the entity
+   */
+  font: TextDrawFont;
 
   /**
    * @description
@@ -24,6 +31,7 @@ export class TextComponent extends Component {
     super();
 
     this.text = props?.text ?? 'Text';
+    this.font = props?.font ?? TextDrawFont.Normal;
     this.textColor = props?.textColor ?? '#FFFFFFFF';
   }
 }
