@@ -1,7 +1,6 @@
 import { MutableRefObject, useRef } from 'react';
 import { useDrag } from './drag.hook';
 import { TextDraw } from '../core/entity/textdraw';
-import { useResize } from './resize.hook';
 
 
 /**

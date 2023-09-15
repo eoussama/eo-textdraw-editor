@@ -50,12 +50,13 @@
     }
   }
 
+  &__text {
+    width: fit-content;
+  }
+
   &--box {}
 
-  &--text {
-    width: auto !important;
-    height: auto !important;
-  }
+  &--text {}
 
   &:active {
     cursor: grabbing;

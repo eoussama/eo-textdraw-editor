@@ -1,8 +1,9 @@
 import { MutableRefObject, SyntheticEvent, useEffect, useMemo, useState } from 'react';
 import { TextDraw } from '../core/entity/textdraw';
 import { SizeComponent } from '../core/component/size';
-import { PositionComponent } from '../core/component/position';
 import { TextdrawSystem } from '../core/system/textdraw';
+import { PositionComponent } from '../core/component/position';
+import { TextComponent } from '../core/component/text';
 
 
 /**
@@ -13,6 +14,7 @@ import { TextdrawSystem } from '../core/system/textdraw';
  * @param parentRef The parent element
  */
 export function useResize(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDivElement>) {
+  const isText = useMemo(() => textdraw.hasComponent(TextComponent), [textdraw]);
   const textdrawSize = useMemo(() => textdraw.getComponent(SizeComponent), [textdraw]);
   const textdrawPos = useMemo(() => textdraw.getComponent(PositionComponent), [textdraw]);
 
@@ -33,6 +35,21 @@ export function useResize(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDi
     setIsResizing(true);
     TextdrawSystem.update(textdraw);
   };
+
+  useEffect(() => {
+    if (isText && textdrawSize) {
+      const selector = `#${CSS.escape(textdraw.id)} .textdraw__text`;
+      const currentElement = document.querySelector(selector);
+      const boundigRect = currentElement?.getBoundingClientRect();
+      const elementWidth = boundigRect?.width ?? textdrawSize?.sizeWidth ?? 10;
+      const elementHeight = boundigRect?.height ?? textdrawSize?.sizeHeight ?? 10;
+
+      textdrawSize.sizeWidth = elementWidth;
+      textdrawSize.sizeHeight = elementHeight;
+
+      TextdrawSystem.update(textdraw);
+    }
+  }, [isText]);
 
   useEffect(() => {
     const bounds = parentRef.current.getBoundingClientRect();

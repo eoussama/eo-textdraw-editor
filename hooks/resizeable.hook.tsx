@@ -14,9 +14,8 @@ import { TextComponent } from '../core/component/text';
  */
 export function useResizeable(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDivElement>) {
   const textdrawtext = useMemo(() => textdraw.getComponent(TextComponent), [textdraw]);
-
   const { width, height, minWidth, maxWidth, minHeight, maxHeight, isResizing, setIsResizing, onResize } = useResize(textdraw, parentRef);
-
+  
   const resizeableSize = {
     width: textdrawtext ? 0 : width,
     height: textdrawtext ? 0 : height

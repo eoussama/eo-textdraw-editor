@@ -1,16 +1,15 @@
-import { useMemo, useRef, useState } from 'react';
-import { ResizableBox } from 'react-resizable';
+import { useMemo, useState } from 'react';
 import Draggable from 'react-draggable';
+import { ResizableBox } from 'react-resizable';
 
 import styles from './TextDraw.module.scss';
-import { useDrag } from '../../hooks/drag.hook';
 import { useActive } from '../../hooks/active.hook';
 import { BoxComponent } from '../../core/component/box';
 import { NameComponent } from '../../core/component/name';
 import { TextComponent } from '../../core/component/text';
-import { TTextDrawComponentProps } from '../../core/utils/types/props/textdrawComponenetProps.type';
-import { useResizeable } from '../../hooks/resizeable.hook';
 import { useDraggable } from '../../hooks/draggable.hook';
+import { useResizeable } from '../../hooks/resizeable.hook';
+import { TTextDrawComponentProps } from '../../core/utils/types/props/textdrawComponenetProps.type';
 
 
 export default function TextDrawComponent(props: TTextDrawComponentProps) {
@@ -24,14 +23,27 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
   const { isActive } = useActive(textdraw, draggableProps.nodeRef);
 
   const textdrawStyles = {
-    width: width,
-    height: height,
+    width,
+    height,
     backgroundColor: textdrawBox?.useBox ? textdrawBox?.boxColor : 'transparent'
   };
 
-  const textdrawActiveClass = `${isActive ? styles['textdraw--active'] : ''}`;
-  const textdrawTypeClass = `${textdrawtext ? styles['textdraw--text'] : styles['textdraw--box']}`;
-  const textdrawClasses = `textdraw ${styles['textdraw']} ${textdrawActiveClass} ${textdrawTypeClass}`;
+  const textdrawClasses = [
+    'textdraw',
+    styles['textdraw'],
+    isActive ? styles['textdraw--active'] : '',
+    textdrawtext ? styles['textdraw--text'] : styles['textdraw--box']
+  ].join(' ');
+
+  const metaClasses = [
+    'textdraw__meta',
+    styles['textdraw__meta']
+  ].join(' ');
+
+  const textClasses = [
+    'textdraw__text',
+    styles['textdraw__text']
+  ].join(' ');
 
   return (
     <>
@@ -42,13 +54,13 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
           className={textdrawClasses}
           ref={draggableProps.nodeRef}
         >
-          <div className={styles['textdraw__meta']}>
+          <div className={metaClasses}>
             [{textdrawName?.name}]
             {isResizing ? ` (width: ${width}, height: ${height})` : ` (x: ${x}, y: ${y})`}
           </div>
 
           {textdrawtext &&
-            <div className={styles['textdraw__text']}>
+            <div className={textClasses}>
               {textdrawtext?.text}
             </div>
           }
