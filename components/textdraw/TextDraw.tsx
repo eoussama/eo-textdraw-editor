@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { CSSProperties, useMemo, useState } from 'react';
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
 
@@ -22,9 +22,10 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
   const { x, y, props: draggableProps } = useDraggable(textdraw, props.parentRef, isResizing);
   const { isActive } = useActive(textdraw, draggableProps.nodeRef);
 
-  const textdrawStyles = {
+  const textdrawStyles: CSSProperties = {
     width,
     height,
+    color: textdrawtext?.textColor,
     backgroundColor: textdrawBox?.useBox ? textdrawBox?.boxColor : 'transparent'
   };
 
