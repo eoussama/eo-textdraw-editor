@@ -24,4 +24,16 @@ export type TTextProps = {
    * The text color of the entity
    */
   textColor: string
+
+  /**
+   * @description
+   * The width of a single letter
+   */
+  letterWidth: number;
+
+  /**
+   * @description
+   * The height of a single letter
+   */
+  letterHeight: number;
 }

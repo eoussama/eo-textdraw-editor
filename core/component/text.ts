@@ -27,11 +27,25 @@ export class TextComponent extends Component {
    */
   textColor: string;
 
+  /**
+   * @description
+   * The width of a single letter
+   */
+  letterWidth: number;
+
+  /**
+   * @description
+   * The height of a single letter
+   */
+  letterHeight: number;
+
   constructor(props?: Partial<TTextProps>) {
     super();
 
     this.text = props?.text ?? 'Text';
     this.font = props?.font ?? TextDrawFont.Normal;
+    this.letterWidth = props?.letterWidth ?? 10;
+    this.letterHeight = props?.letterHeight ?? 10;
     this.textColor = props?.textColor ?? '#FFFFFFFF';
   }
 }
