@@ -1,5 +1,4 @@
 import { TextDraw } from '../entity/textdraw';
-import { TextComponent } from '../component/text';
 import { BoxComponent } from '../component/box';
 
 

@@ -1,5 +1,6 @@
 import { Board } from '../entity/board';
 import { useBoardStore } from '../store/board';
+
 import { TNullable } from '../utils/types/generic/nullable.type';
 import { TBoardProps } from '../utils/types/props/boardProps.type';
 
