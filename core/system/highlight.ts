@@ -15,7 +15,7 @@ export class HighlightSystem {
    *
    * @param textdraw The target textdraw
    */
-  static getTextStyle(textdraw: TextDraw) {
+  static getStyle(textdraw: TextDraw) {
     if (textdraw.hasComponent(HighlightComponent, TextComponent)) {
       const textdrawHighlight = textdraw.getComponent(HighlightComponent);
       const color = textdrawHighlight?.highlightColor ?? 'transparent';

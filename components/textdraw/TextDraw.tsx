@@ -29,12 +29,12 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
   const textdrawStyles: CSSProperties = {
     width,
     height,
-    ...BoxSystem.getTextStyle(textdraw),
+    ...BoxSystem.getStyle(textdraw),
   };
 
   const textdrawTextStyles = {
-    ...TextSystem.getTextStyle(textdraw),
-    ...HighlightSystem.getTextStyle(textdraw)
+    ...TextSystem.getStyle(textdraw),
+    ...HighlightSystem.getStyle(textdraw)
   };
 
   return (

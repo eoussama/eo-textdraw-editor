@@ -15,7 +15,7 @@ export class BoxSystem {
    *
    * @param textdraw The target textdraw
    */
-  static getTextStyle(textdraw: TextDraw) {
+  static getStyle(textdraw: TextDraw) {
     if (textdraw.hasComponent(BoxComponent)) {
       const textdrawBox = textdraw.getComponent(BoxComponent);
 

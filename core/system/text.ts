@@ -14,7 +14,7 @@ export class TextSystem {
    *
    * @param textdraw The target textdraw
    */
-  static getTextStyle(textdraw: TextDraw) {
+  static getStyle(textdraw: TextDraw) {
     if (textdraw.hasComponent(TextComponent)) {
       const textdrawText = textdraw.getComponent(TextComponent);
 
