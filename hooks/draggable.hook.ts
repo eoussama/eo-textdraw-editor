@@ -27,6 +27,7 @@ export function useDraggable(textdraw: TextDraw, isResizing: boolean) {
       nodeRef: elementRef,
       disabled: isResizing,
       defaultPosition: draggablePosition,
+      position: isResizing ? { x, y } : undefined
     }
   };
 }
