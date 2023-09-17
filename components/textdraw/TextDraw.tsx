@@ -30,7 +30,7 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
   const { props: draggableProps } = useDraggable(textdraw, isResizing);
 
   const metaLabel = useMemo(() => `[${textdrawName?.name}]`, [textdraw]);
-  const metaValue = useMemo(() => ' ' + (isResizing ? SizeSystem.getMeta(textdraw) : PositionSystem.getMeta(textdraw)), [textdraw]);
+  const metaValue = useMemo(() => ' ' + (isResizing ? SizeSystem.getMeta(textdraw) : PositionSystem.getMeta(textdraw)), [isResizing, textdraw]);
 
   const textdrawStyles: CSSProperties = {
     width,
