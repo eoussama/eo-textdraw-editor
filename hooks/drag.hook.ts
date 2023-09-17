@@ -1,4 +1,4 @@
-import { MutableRefObject, useMemo } from 'react';
+import { useMemo } from 'react';
 import { TextDraw } from '../core/entity/textdraw';
 import { TextdrawSystem } from '../core/system/textdraw';
 import { PositionComponent } from '../core/component/position';

@@ -1,6 +1,6 @@
 import styles from './../components/textdraw/TextDraw.module.scss';
 
-import { MutableRefObject, useEffect, useMemo, useState } from 'react';
+import { MutableRefObject, useMemo, useState } from 'react';
 
 import { useResize } from './resize.hook';
 import { TextDraw } from '../core/entity/textdraw';
@@ -29,16 +29,14 @@ export function useResizeable(textdraw: TextDraw, parentRef: MutableRefObject<HT
     maxConstraints: [maxWidth, maxHeight]
   };
 
-  useEffect(() => {
-    console.log({ resizeAngle });
-  }, [resizeAngle]);
-
   const resizeableHandle: any = {
     handleSize: [10, 10],
     resizeHandles: [resizeAngle],
+    axis: textdrawtext ? 'none' : 'both',
     handle: !textdrawtext && <div>
-      {['n', 'e', 's', 'w', 'ne', 'se', 'nw', 'sw'].map(direction =>
+      {['n', 'e', 's', 'w', 'ne', 'se', 'nw', 'sw'].map((direction, index) =>
         <span
+          key={index}
           className={`${styles['handle']} ${styles[`handle--${direction}`]}`}
           onMouseEnter={() => { setIsResizing(true); setResizeAngle(direction); }}
           onMouseLeave={() => setIsResizing(false)}
@@ -61,6 +59,7 @@ export function useResizeable(textdraw: TextDraw, parentRef: MutableRefObject<HT
       ...resizeableHandle,
       ...resizeableCallbacks,
       ...resizeableConstrains,
+      lockAspectRatio: false,
       className: styles['textdraw__resizer']
     }
   };

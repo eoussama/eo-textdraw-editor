@@ -25,9 +25,26 @@ export function useResize(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDi
   const [isResizing, setIsResizing] = useState(false);
 
   const onResize = (_: SyntheticEvent<Element, Event>, e: any) => {
-    const { size } = e;
+    const { size, handle } = e;
 
-    if (textdrawSize) {
+    if (textdrawSize && textdrawPos) {
+      // let newLeft = textdrawPos.posX;
+      // let newTop = textdrawPos.posY;
+
+      // if (['n', 'w', 'ne', 'nw', 'sw'].includes(handle)) {
+      //   if (handle.indexOf('n') > -1) {
+      //     const deltaHeight = size.height - textdrawSize.sizeHeight;
+      //     newTop -= deltaHeight
+      //   }
+
+      //   if (handle.indexOf('w') > -1) {
+      //     const deltaWidth = size.width - textdrawSize.sizeWidth
+      //     newLeft -= deltaWidth
+      //   }
+      // }
+
+      // textdrawPos.posX = newLeft;
+      // textdrawPos.posY = newTop;
       textdrawSize.sizeWidth = size.width;
       textdrawSize.sizeHeight = size.height;
     }
