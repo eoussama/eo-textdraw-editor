@@ -23,7 +23,7 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
   const textdrawName = useMemo(() => textdraw.getComponent(NameComponent), [textdraw]);
 
   const { width, height, isResizing, props: resizeableProps } = useResizeable(textdraw, props.parentRef);
-  const { x, y, props: draggableProps } = useDraggable(textdraw, props.parentRef, isResizing);
+  const { x, y, props: draggableProps } = useDraggable(textdraw, isResizing);
   const { textdrawClasses, metaClasses, textClasses } = useTextdraw(textdraw);
 
   const textdrawStyles: CSSProperties = {

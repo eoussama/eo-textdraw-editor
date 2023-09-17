@@ -1,4 +1,4 @@
-import { MutableRefObject, useRef } from 'react';
+import { useRef } from 'react';
 import { useDrag } from './drag.hook';
 import { TextDraw } from '../core/entity/textdraw';
 
@@ -8,28 +8,24 @@ import { TextDraw } from '../core/entity/textdraw';
  * Returns draggable component props
  *
  * @param textdraw The target textdraw to drag
- * @param parentRef The parent element
  * @param isResizing If the textdraw is being resized
  */
-export function useDraggable(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDivElement>, isResizing: boolean) {
+export function useDraggable(textdraw: TextDraw, isResizing: boolean) {
   const elementRef = useRef() as any;
-  const { x, y, minX, maxX, minY, maxY, onDrag } = useDrag(textdraw, parentRef);
+  const { x, y, onDrag } = useDrag(textdraw);
 
   const draggablePosition = { x, y };
-  const draggableBounds = { left: minX, right: maxX, top: minY, bottom: maxY };
-
-  const draggableCallbacks = {
-    onDrag
-  };
+  const draggableCallbacks = { onDrag };
 
   return {
     x,
     y,
     props: {
       ...draggableCallbacks,
+      scale: 1,
+      bounds: 'parent',
       nodeRef: elementRef,
       disabled: isResizing,
-      bounds: draggableBounds,
       defaultPosition: draggablePosition,
     }
   };
