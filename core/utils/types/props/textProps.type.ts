@@ -36,4 +36,10 @@ export type TTextProps = {
    * The height of a single letter
    */
   letterHeight: number;
+
+  /**
+   * @description
+   * Text proportionality ratio state
+   */
+  proportional: boolean;
 }

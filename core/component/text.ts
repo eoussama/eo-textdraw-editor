@@ -39,6 +39,12 @@ export class TextComponent extends Component {
    */
   letterHeight: number;
 
+  /**
+   * @description
+   * Text proportionality ratio state
+   */
+  proportional: boolean;
+
   constructor(props?: Partial<TTextProps>) {
     super();
 
@@ -46,6 +52,7 @@ export class TextComponent extends Component {
     this.font = props?.font ?? TextDrawFont.Normal;
     this.letterWidth = props?.letterWidth ?? 10;
     this.letterHeight = props?.letterHeight ?? 10;
+    this.proportional = props?.proportional ?? true;
     this.textColor = props?.textColor ?? '#FFFFFFFF';
   }
 }
