@@ -54,12 +54,12 @@ export class Entity {
 
   /**
    * @description
-   * Checks if entity has a component
+   * Checks if entity has a select set of component
    *
-   * @param componentType The component to check
+   * @param componentTypes The components to check
    */
-  hasComponent(componentType: TClassType<Component>) {
-    return Boolean(this.getComponent(componentType));
+  hasComponent(...componentTypes: Array<TClassType<Component>>) {
+    return componentTypes.every(componentType => Boolean(this.getComponent(componentType)));
   }
 
   /**
