@@ -1,9 +1,12 @@
 import { BoardSystem } from './board';
+
 import { Board } from '../entity/board';
 import { TextDraw } from '../entity/textdraw';
+
 import { TClassType } from '../utils/types/generic/class.type';
 import { TNullable } from '../utils/types/generic/nullable.type';
 import { TTextDrawProps } from '../utils/types/props/textdrawProps.type';
+
 import { useBoardStore } from '../store/board';
 import { useTextDrawStore } from '../store/textdraw';
 

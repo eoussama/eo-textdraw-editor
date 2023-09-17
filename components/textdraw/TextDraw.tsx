@@ -12,6 +12,8 @@ import { useResizeable } from '../../hooks/resizeable.hook';
 
 import { BoxSystem } from '../../core/system/box';
 import { TextSystem } from '../../core/system/text';
+import { SizeSystem } from '../../core/system/size';
+import { PositionSystem } from '../../core/system/position';
 import { HighlightSystem } from '../../core/system/highlight';
 
 import { TTextDrawComponentProps } from '../../core/utils/types/props/textdrawComponenetProps.type';
@@ -24,8 +26,11 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
   const textdrawName = useMemo(() => textdraw.getComponent(NameComponent), [textdraw]);
 
   const { width, height, isResizing, props: resizeableProps } = useResizeable(textdraw, props.parentRef);
-  const { x, y, props: draggableProps } = useDraggable(textdraw, isResizing);
   const { textdrawClasses, metaClasses, textClasses } = useTextdraw(textdraw);
+  const { props: draggableProps } = useDraggable(textdraw, isResizing);
+
+  const metaLabel = useMemo(() => `[${textdrawName?.name}]`, [textdraw]);
+  const metaValue = useMemo(() => ' ' + (isResizing ? SizeSystem.getMeta(textdraw) : PositionSystem.getMeta(textdraw)), [textdraw]);
 
   const textdrawStyles: CSSProperties = {
     width,
@@ -48,8 +53,8 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
           ref={draggableProps.nodeRef}
         >
           <div className={metaClasses}>
-            [{textdrawName?.name}]
-            {isResizing ? ` (width: ${width}, height: ${height})` : ` (x: ${x}, y: ${y})`}
+            {metaLabel}
+            {metaValue}
           </div>
 
           {textdrawText &&
