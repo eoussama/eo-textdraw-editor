@@ -5,6 +5,7 @@ import { MutableRefObject, useMemo, useState } from 'react';
 import { useResize } from './resize.hook';
 import { TextDraw } from '../core/entity/textdraw';
 import { TextComponent } from '../core/component/text';
+import { resizeDirections } from '../core/utils/const/resizeDirections.const';
 
 
 /**
@@ -34,7 +35,7 @@ export function useResizeable(textdraw: TextDraw, parentRef: MutableRefObject<HT
     resizeHandles: [resizeAngle],
     axis: textdrawtext ? 'none' : 'both',
     handle: !textdrawtext && <div>
-      {['n', 'e', 's', 'w', 'ne', 'se', 'nw', 'sw'].map((direction, index) =>
+      {resizeDirections.all.map((direction, index) =>
         <span
           key={index}
           className={`${styles['handle']} ${styles[`handle--${direction}`]}`}

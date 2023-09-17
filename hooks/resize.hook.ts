@@ -1,9 +1,13 @@
 import { MutableRefObject, SyntheticEvent, useEffect, useMemo, useState } from 'react';
+
 import { TextDraw } from '../core/entity/textdraw';
+import { resizeDirections } from '../core/utils/const/resizeDirections.const';
+
 import { SizeComponent } from '../core/component/size';
-import { TextdrawSystem } from '../core/system/textdraw';
-import { PositionComponent } from '../core/component/position';
 import { TextComponent } from '../core/component/text';
+import { PositionComponent } from '../core/component/position';
+
+import { TextdrawSystem } from '../core/system/textdraw';
 
 
 /**
@@ -28,23 +32,23 @@ export function useResize(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDi
     const { size, handle } = e;
 
     if (textdrawSize && textdrawPos) {
-      // let newLeft = textdrawPos.posX;
-      // let newTop = textdrawPos.posY;
+      let newLeft = textdrawPos.posX;
+      let newTop = textdrawPos.posY;
 
-      // if (['n', 'w', 'ne', 'nw', 'sw'].includes(handle)) {
-      //   if (handle.indexOf('n') > -1) {
-      //     const deltaHeight = size.height - textdrawSize.sizeHeight;
-      //     newTop -= deltaHeight
-      //   }
+      if (resizeDirections.sensitive.includes(handle)) {
+        if (handle.indexOf('n') > -1) {
+          const deltaHeight = size.height - textdrawSize.sizeHeight;
+          newTop -= deltaHeight;
+        }
 
-      //   if (handle.indexOf('w') > -1) {
-      //     const deltaWidth = size.width - textdrawSize.sizeWidth
-      //     newLeft -= deltaWidth
-      //   }
-      // }
+        if (handle.indexOf('w') > -1) {
+          const deltaWidth = size.width - textdrawSize.sizeWidth;
+          newLeft -= deltaWidth;
+        }
+      }
 
-      // textdrawPos.posX = newLeft;
-      // textdrawPos.posY = newTop;
+      textdrawPos.posX = newLeft;
+      textdrawPos.posY = newTop;
       textdrawSize.sizeWidth = size.width;
       textdrawSize.sizeHeight = size.height;
     }
