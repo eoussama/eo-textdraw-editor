@@ -1,4 +1,4 @@
-import { CSSProperties, useMemo, useState } from 'react';
+import { CSSProperties, useMemo } from 'react';
 
 import Draggable from 'react-draggable';
 import { ResizableBox } from 'react-resizable';
@@ -18,7 +18,8 @@ import { TTextDrawComponentProps } from '../../core/utils/types/props/textdrawCo
 
 
 export default function TextDrawComponent(props: TTextDrawComponentProps) {
-  const [textdraw] = useState(props.textdraw);
+  const { textdraw } = props;
+
   const textdrawText = useMemo(() => textdraw.getComponent(TextComponent), [textdraw]);
   const textdrawName = useMemo(() => textdraw.getComponent(NameComponent), [textdraw]);
 
