@@ -11,8 +11,9 @@
 
   &__meta {
     position: absolute;
-    top: -18px;
-    left: 0;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
 
     font-size: 11px;
     font-family: monospace;
@@ -20,6 +21,7 @@
 
     opacity: 0;
     white-space: nowrap;
+    pointer-events: none;
 
     transition-duration: 0.2s;
     transition-property: opacity;
@@ -32,21 +34,104 @@
     height: 100%;
 
     .handle {
-      cursor: se-resize;
-
-      width: 8px;
-      height: 8px;
+      --offset: 13px;
+      --thickness: 8px;
 
       opacity: 0;
-      border-radius: 4px;
       background-color: var(--select-color);
 
-      right: -4px;
-      bottom: -4px;
       position: absolute;
+      border-radius: 5px;
 
       transition-duration: 0.2s;
       transition-property: opacity;
+
+      &--se,
+      &--sw,
+      &--ne,
+      &--nw {
+        width: var(--thickness);
+        height: var(--thickness);
+      }
+    
+      &--n,
+      &--e,
+      &--s,
+      &--w {
+        --thickness: 3px;
+      }
+
+      &--se {
+        cursor: se-resize;
+
+        right: calc(var(--offset) * -1);
+        bottom: calc(var(--offset) * -1);
+      }
+
+      &--sw {
+        cursor: sw-resize;
+
+        left: calc(var(--offset) * -1);
+        bottom: calc(var(--offset) * -1);
+      }
+
+      &--ne {
+        cursor: ne-resize;
+
+        right: calc(var(--offset) * -1);
+        top: calc(var(--offset) * -1);
+      }
+
+      &--nw {
+        cursor: nw-resize;
+
+        left: calc(var(--offset) * -1);
+        top: calc(var(--offset) * -1);
+      }
+
+      &--n {
+        cursor: n-resize;
+
+        left: 50%;
+        top: calc(var(--offset) * -1);
+        transform: translateX(-50%);
+
+        height: var(--thickness);
+        width: clamp(10px, 100%, 50%);
+      }
+
+      &--e {
+        cursor: e-resize;
+
+        top: 50%;
+        right: calc(var(--offset) * -1);
+        transform: translateY(-50%);
+
+        width: var(--thickness);
+        height: clamp(10px, 100%, 50%);
+      }
+
+      &--s {
+        cursor: s-resize;
+
+        left: 50%;
+        bottom: calc(var(--offset) * -1);
+        transform: translateX(-50%);
+
+        height: var(--thickness);
+        width: clamp(10px, 100%, 50%);
+      }
+
+      &--w {
+        cursor: w-resize;
+
+        top: 50%;
+        left: calc(var(--offset) * -1);
+        transform: translateY(-50%);
+
+        width: var(--thickness);
+        height: clamp(10px, 100%, 50%);
+      }
     }
   }
 
@@ -63,15 +148,15 @@
       &-stylized {
         font-family: 'Font Stylized';
       }
-      
+
       &-normal {
         font-family: 'Font Normal';
       }
-      
+
       &-thin {
         font-family: 'Font Thin';
       }
-      
+
       &-bold {
         font-family: 'Font Bold';
       }
@@ -96,7 +181,12 @@
     }
 
     .textdraw__resizer .handle {
-      opacity: 0.75;
+      opacity: 0.3;
+
+      &:hover,
+      &:active {
+        opacity: 0.7;
+      }
     }
   }
 }
