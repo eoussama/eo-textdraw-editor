@@ -11,11 +11,12 @@
 
   &__meta {
     position: absolute;
-    top: -30px;
+    top: -44px;
     left: 50%;
     transform: translateX(-50%);
 
     font-size: 11px;
+    text-align: center;
     font-family: monospace;
     color: var(--select-color);
 
@@ -37,7 +38,7 @@
     .handle {
       --offset: 13px;
       --thickness: 8px;
-      
+
       opacity: 0;
       pointer-events: all;
       background-color: var(--select-color);
@@ -55,7 +56,7 @@
         width: var(--thickness);
         height: var(--thickness);
       }
-    
+
       &--n,
       &--e,
       &--s,
