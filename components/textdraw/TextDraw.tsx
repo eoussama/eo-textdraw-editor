@@ -25,12 +25,12 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
   const textdrawText = useMemo(() => textdraw.getComponent(TextComponent), [textdraw]);
   const textdrawName = useMemo(() => textdraw.getComponent(NameComponent), [textdraw]);
 
-  const { width, height, isResizing, props: resizeableProps } = useResizeable(textdraw, props.parentRef);
+  const { width, height, isResizing, setIsResizing, props: resizeableProps } = useResizeable(textdraw, props.parentRef);
   const { textdrawClasses, metaClasses, textClasses } = useTextdraw(textdraw);
   const { props: draggableProps } = useDraggable(textdraw, isResizing);
 
   const metaLabel = useMemo(() => `[${textdrawName?.name}]`, [textdraw]);
-  const metaValue = useMemo(() => ' ' + (isResizing ? SizeSystem.getMeta(textdraw) : PositionSystem.getMeta(textdraw)), [textdraw]);
+  const metaValue = useMemo(() => isResizing ? SizeSystem.getMeta(textdraw) : PositionSystem.getMeta(textdraw), [isResizing, textdraw]);
 
   const textdrawStyles: CSSProperties = {
     width,
@@ -43,6 +43,10 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
     ...HighlightSystem.getStyle(textdraw)
   };
 
+  const onMouseEnter = () => {
+    setIsResizing(false);
+  }
+
   return (
     <>
       <Draggable {...draggableProps}>
@@ -51,10 +55,10 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
           style={textdrawStyles}
           className={textdrawClasses}
           ref={draggableProps.nodeRef}
+          onMouseEnter={onMouseEnter}
         >
           <div className={metaClasses}>
-            {metaLabel}
-            {metaValue}
+            {metaLabel} {metaValue}
           </div>
 
           {textdrawText &&
@@ -63,7 +67,7 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
             </div>
           }
 
-          {!textdrawText && <ResizableBox {...resizeableProps} ></ResizableBox>}
+          {!textdrawText && <ResizableBox {...resizeableProps}></ResizableBox>}
         </div>
       </Draggable >
     </>
