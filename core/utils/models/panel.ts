@@ -2,6 +2,7 @@ import { v4 as uuid4 } from 'uuid';
 
 import { PanelId } from '../types/union/panelId.type';
 import { TNullable } from '../types/generic/nullable.type';
+import { generateName } from '../helpers/string/name.helper';
 
 
 /**
@@ -15,6 +16,12 @@ export class Panel {
    * The ID of the panel
    */
   id: PanelId;
+
+  /**
+   * @description
+   * The title of the panel
+   */
+  title: string;
 
   /**
    * @description
@@ -42,6 +49,7 @@ export class Panel {
 
   constructor(model?: Partial<Panel>) {
     this.id = model?.id ?? uuid4();
+    this.title = model?.title ?? generateName('panel');
 
     this.isClosed = model?.isClosed ?? false;
     this.isCollapsed = model?.isCollapsed ?? false;
