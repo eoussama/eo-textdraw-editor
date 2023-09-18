@@ -1,5 +1,6 @@
 import { v4 as uuid4 } from 'uuid';
-import { PanelId } from '../enums/panelId.enum';
+
+import { PanelId } from '../types/union/panelId.type';
 import { TNullable } from '../types/generic/nullable.type';
 
 
@@ -37,10 +38,10 @@ export class Panel {
    * @description
    * The parent panel ID which host the current panel
    */
-  parentId: TNullable<string>;
+  parentId: TNullable<PanelId>;
 
   constructor(model?: Partial<Panel>) {
-    this.id = model?.id ?? (uuid4() as PanelId);
+    this.id = model?.id ?? uuid4();
 
     this.isClosed = model?.isClosed ?? false;
     this.isCollapsed = model?.isCollapsed ?? false;

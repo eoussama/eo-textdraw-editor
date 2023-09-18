@@ -1,14 +1,22 @@
 import styles from './Editor.module.scss';
 
+import { useEffect } from 'react';
+
 import BoardComponent from '../board/Board';
 import PanelComponent from '../panel/Panel';
 
+import { PanelSystem } from '../../core/system/panel';
 import { useBoardStore } from '../../core/store/board';
+
 import { PanelId } from '../../core/utils/enums/panelId.enum';
 
 
 export default function EditorComponent() {
   const board = useBoardStore((state) => state.active);
+
+  useEffect(() => {
+    PanelSystem.init();
+  }, []);
 
   return (
     <div className={styles['root']}>
