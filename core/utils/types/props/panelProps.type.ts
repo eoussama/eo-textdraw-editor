@@ -1,4 +1,5 @@
-import { PanelId } from '../../enums/panelId.enum';
+import { PanelId } from '../union/panelId.type';
+
 
 
 /**
