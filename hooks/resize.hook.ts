@@ -30,6 +30,7 @@ export function useResize(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDi
 
   const onResize = (_: SyntheticEvent<Element, Event>, e: any) => {
     const { size, handle } = e;
+    setIsResizing(true);
 
     if (textdrawSize && textdrawPos) {
       let newLeft = textdrawPos.posX;
@@ -53,7 +54,6 @@ export function useResize(textdraw: TextDraw, parentRef: MutableRefObject<HTMLDi
       textdrawSize.sizeHeight = size.height;
     }
 
-    setIsResizing(true);
     TextdrawSystem.update(textdraw);
   };
 

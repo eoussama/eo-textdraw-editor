@@ -6,6 +6,7 @@ import { useResize } from './resize.hook';
 import { TextDraw } from '../core/entity/textdraw';
 import { TextComponent } from '../core/component/text';
 import { resizeDirections } from '../core/utils/const/resizeDirections.const';
+import { ResizeDirection } from '../core/utils/enums/resizeDirection.enum';
 
 
 /**
@@ -30,6 +31,15 @@ export function useResizeable(textdraw: TextDraw, parentRef: MutableRefObject<HT
     maxConstraints: [maxWidth, maxHeight]
   };
 
+  const onMouseEnter = (direction: ResizeDirection) => {
+    setIsResizing(true);
+    setResizeAngle(direction);
+  }
+
+  const onMouseLeave = () => {
+    setIsResizing(false);
+  }
+
   const resizeableHandle: any = {
     handleSize: [10, 10],
     resizeHandles: [resizeAngle],
@@ -38,9 +48,9 @@ export function useResizeable(textdraw: TextDraw, parentRef: MutableRefObject<HT
       {resizeDirections.all.map((direction, index) =>
         <span
           key={index}
+          onMouseLeave={() => onMouseLeave()}
+          onMouseEnter={() => onMouseEnter(direction)}
           className={`${styles['handle']} ${styles[`handle--${direction}`]}`}
-          onMouseEnter={() => { setIsResizing(true); setResizeAngle(direction); }}
-          onMouseLeave={() => setIsResizing(false)}
         />
       )}
     </div>
@@ -55,6 +65,7 @@ export function useResizeable(textdraw: TextDraw, parentRef: MutableRefObject<HT
     width,
     height,
     isResizing,
+    setIsResizing,
     props: {
       ...resizeableSize,
       ...resizeableHandle,
