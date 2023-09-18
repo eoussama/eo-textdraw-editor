@@ -1,3 +1,5 @@
+import styles from './Panel.module.scss';
+
 import { useMemo } from 'react';
 
 import { PanelSystem } from '../../core/system/panel';
@@ -11,13 +13,30 @@ import { TPanelProps } from '../../core/utils/types/props/panelProps.type';
  * The panel component
  */
 export default function PanelComponent(props: TPanelProps) {
-  const { id } = props;
+  const { id, children } = props;
   const panel = useMemo(() => PanelSystem.get(id), [usePanelStore(e => e.panels)]);
-  const children = useMemo(() => panel?.children ?? [], [panel]);
+  const subPanels = useMemo(() => panel?.children ?? [], [panel]);
 
   return (
     panel && <>
-      {children.map(childId => <PanelComponent key={childId} id={childId} />)}
+      <div className={styles['panel']}>
+        <div className={styles['panel__head']}>
+          <div className={styles['panel__left']}>
+            <h5 className={styles['panel__title']}>
+              {panel.title}
+            </h5>
+          </div>
+
+          <div className={styles['panel__right']}></div>
+        </div>
+
+        <div className={styles['panel__body']}>
+          <div className={styles['panel__component']}>{children}</div>
+          <div className={styles['panel__sub-panels']}>
+            {subPanels.map(childId => <PanelComponent key={childId} id={childId} />)}
+          </div>
+        </div>
+      </div>
     </>
   )
 }
