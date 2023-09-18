@@ -93,6 +93,7 @@ export class BoardSystem {
 
     if (board) {
       board.textdraws = [];
+      this.update(board);
     }
   }
 

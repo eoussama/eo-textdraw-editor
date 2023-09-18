@@ -58,7 +58,7 @@ export default function TextDrawComponent(props: TTextDrawComponentProps) {
           onMouseEnter={onMouseEnter}
         >
           <div className={metaClasses}>
-            {metaLabel} {metaValue}
+            {metaLabel}  <br /> {metaValue}
           </div>
 
           {textdrawText &&
