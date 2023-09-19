@@ -1,3 +1,22 @@
 .panel {
   position: relative;
+
+  &__left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+  }
+
+  &__icon {
+    display: flex;
+    margin-right: 3px;
+  }
+
+  &__title {
+    margin: 0;
+    padding: 0;
+
+    font-weight: 400;
+  }
 }

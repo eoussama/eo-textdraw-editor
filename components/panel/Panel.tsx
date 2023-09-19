@@ -22,6 +22,10 @@ export default function PanelComponent(props: TPanelProps) {
       <div className={styles['panel']}>
         <div className={styles['panel__head']}>
           <div className={styles['panel__left']}>
+            {panel.icon && <span className={styles['panel__icon']}>
+              {<panel.icon />}
+            </span>}
+
             <h5 className={styles['panel__title']}>
               {panel.title}
             </h5>
