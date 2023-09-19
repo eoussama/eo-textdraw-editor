@@ -3,6 +3,8 @@ import { usePanelStore } from '../store/panel';
 
 import { PanelId } from '../utils/types/union/panelId.type';
 import { TNullable } from '../utils/types/generic/nullable.type';
+
+import { panelDefinitions } from '../utils/const/panels.const';
 import { PanelId as PanelIds } from '../utils/enums/panelId.enum';
 
 
@@ -22,12 +24,8 @@ export class PanelSystem {
     const setPanels = usePanelStore.getState().setPanels;
     setPanels([]);
 
-    const panelIds = [
-      PanelIds.Left, PanelIds.RightTop, PanelIds.RightBottom,
-      PanelIds.Toolbox, PanelIds.Options, PanelIds.Layers
-    ];
-
-    panelIds.forEach(panelId => this.create({ id: panelId }));
+    // Creating base panels
+    panelDefinitions.forEach(panel => this.create(panel));
 
     this.add(PanelIds.Left, PanelIds.Toolbox);
     this.add(PanelIds.RightTop, PanelIds.Options);
