@@ -4,8 +4,8 @@ import { usePanelStore } from '../store/panel';
 import { PanelId } from '../utils/types/union/panelId.type';
 import { TNullable } from '../utils/types/generic/nullable.type';
 
-import { panelDefinitions } from '../utils/const/panels.const';
 import { PanelId as PanelIds } from '../utils/enums/panelId.enum';
+import { panelDefinitions } from '../utils/const/panelsDefinitions.const';
 
 
 /**
@@ -30,6 +30,17 @@ export class PanelSystem {
     this.add(PanelIds.Left, PanelIds.Toolbox);
     this.add(PanelIds.RightTop, PanelIds.Options);
     this.add(PanelIds.RightBottom, PanelIds.Layers);
+  }
+
+  /**
+   * @description
+   * Fetches a panel by ID
+   *
+   * @param panelId The target panel ID
+   */
+  static get(panelId: PanelId): TNullable<Panel> {
+    const panels = usePanelStore.getState().panels;
+    return panels.find(panel => panel.id === panelId) ?? null;
   }
 
   /**
@@ -97,12 +108,16 @@ export class PanelSystem {
 
   /**
    * @description
-   * Fetches a panel by ID
+   * Closes a panel
    *
-   * @param panelId The target panel ID
+   * @param panelId The ID of the panel to close
    */
-  static get(panelId: PanelId): TNullable<Panel> {
-    const panels = usePanelStore.getState().panels;
-    return panels.find(panel => panel.id === panelId) ?? null;
+  static close(panelId: string): void {
+    const panel = this.get(panelId);
+
+    if (panel) {
+      panel.closed = true;
+      this.update(panel);
+    }
   }
 }

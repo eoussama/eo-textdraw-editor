@@ -34,13 +34,19 @@ export class Panel {
    * @description
    * If the panel is closed
    */
-  isClosed: boolean;
+  closed: boolean;
 
   /**
    * @description
    * If the panel is collapsed
    */
-  isCollapsed: boolean;
+  collapsed: boolean;
+
+  /**
+   * @description
+   * If the panle can be closed
+   */
+  closable: boolean;
 
   /**
    * @description
@@ -59,8 +65,10 @@ export class Panel {
     this.icon = model?.icon ?? null;
     this.title = model?.title ?? generateName('panel');
 
-    this.isClosed = model?.isClosed ?? false;
-    this.isCollapsed = model?.isCollapsed ?? false;
+    this.closed = model?.closed ?? false;
+    this.closable = model?.closable ?? true;
+
+    this.collapsed = model?.collapsed ?? false;
 
     this.children = model?.children ?? [];
     this.parentId = model?.parentId ?? null;

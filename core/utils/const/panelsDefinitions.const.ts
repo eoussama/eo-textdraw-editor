@@ -8,9 +8,9 @@ import { PanelId } from '../enums/panelId.enum';
 export const panelDefinitions: Array<Partial<Panel>> = [
 
   // Static panels
-  { id: PanelId.Left, title: '' },
-  { id: PanelId.RightTop, title: '' },
-  { id: PanelId.RightBottom, title: '' },
+  { id: PanelId.Left, title: '', closable: false },
+  { id: PanelId.RightTop, title: '', closable: false },
+  { id: PanelId.RightBottom, title: '', closable: false },
 
   // Base panels
   { id: PanelId.Options, title: 'Options', icon: FaCog },
