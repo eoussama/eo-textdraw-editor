@@ -108,6 +108,21 @@ export class PanelSystem {
 
   /**
    * @description
+   * Collapses a panel
+   *
+   * @param panelId The ID of the panel to collapse
+   */
+  static toggleCollapse(panelId: string): void {
+    const panel = this.get(panelId);
+
+    if (panel) {
+      panel.collapsed = !panel.collapsed;
+      this.update(panel);
+    }
+  }
+
+  /**
+   * @description
    * Closes a panel
    *
    * @param panelId The ID of the panel to close

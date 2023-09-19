@@ -2,12 +2,12 @@ import styles from './Panel.module.scss';
 
 import { useMemo } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
+import { BiCollapseVertical } from 'react-icons/bi';
 
 import { PanelSystem } from '../../core/system/panel';
 import { usePanelStore } from '../../core/store/panel';
 
 import { TPanelProps } from '../../core/utils/types/props/panelProps.type';
-import { icons } from 'react-icons';
 
 
 /**
@@ -20,6 +20,12 @@ export default function PanelComponent(props: TPanelProps) {
   const subPanels = useMemo(() => panel?.children ?? [], [panel]);
 
   const isVisible = panel && !panel.closed;
+
+  const onCollapse = () => {
+    if (panel) {
+      PanelSystem.toggleCollapse(panel.id);
+    }
+  };
 
   const onClose = () => {
     if (panel) {
@@ -42,6 +48,15 @@ export default function PanelComponent(props: TPanelProps) {
           </div>
 
           <div className={styles['panel__right']}>
+            {panel.collapsible &&
+              <span
+                onClick={onCollapse}
+                className={styles['panel__collapse']}
+              >
+                {<BiCollapseVertical />}
+              </span>
+            }
+
             {panel.closable &&
               <span
                 onClick={onClose}
@@ -53,12 +68,12 @@ export default function PanelComponent(props: TPanelProps) {
           </div>
         </div>
 
-        <div className={styles['panel__body']}>
+        {!panel.collapsed && <div className={styles['panel__body']}>
           <div className={styles['panel__component']}>{children}</div>
           <div className={styles['panel__sub-panels']}>
             {subPanels.map(childId => <PanelComponent key={childId} id={childId} />)}
           </div>
-        </div>
+        </div>}
       </div>
     </> : null
   )

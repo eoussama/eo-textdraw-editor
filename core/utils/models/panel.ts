@@ -50,6 +50,12 @@ export class Panel {
 
   /**
    * @description
+   * If the panle can be collapsed
+   */
+  collapsible: boolean;
+
+  /**
+   * @description
    * The child panels that the current panel hosts
    */
   children: Array<PanelId>;
@@ -69,6 +75,7 @@ export class Panel {
     this.closable = model?.closable ?? true;
 
     this.collapsed = model?.collapsed ?? false;
+    this.collapsible = model?.collapsible ?? true;
 
     this.children = model?.children ?? [];
     this.parentId = model?.parentId ?? null;
