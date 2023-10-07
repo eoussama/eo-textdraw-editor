@@ -56,6 +56,12 @@ export class Panel {
 
   /**
    * @description
+   * If the panle can be dragged
+   */
+  draggable: boolean;
+
+  /**
+   * @description
    * The child panels that the current panel hosts
    */
   children: Array<PanelId>;
@@ -76,6 +82,8 @@ export class Panel {
 
     this.collapsed = model?.collapsed ?? false;
     this.collapsible = model?.collapsible ?? true;
+    
+    this.draggable = model?.draggable ?? true;
 
     this.children = model?.children ?? [];
     this.parentId = model?.parentId ?? null;

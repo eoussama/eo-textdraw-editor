@@ -1,8 +1,8 @@
 import styles from './Panel.module.scss';
 
 import { useMemo } from 'react';
-import { AiOutlineClose } from 'react-icons/ai';
 import { BiCollapseVertical } from 'react-icons/bi';
+import { AiOutlineClose, AiOutlineDrag } from 'react-icons/ai';
 
 import { PanelSystem } from '../../core/system/panel';
 import { usePanelStore } from '../../core/store/panel';
@@ -48,6 +48,14 @@ export default function PanelComponent(props: TPanelProps) {
           </div>
 
           <div className={styles['panel__right']}>
+            {panel.draggable &&
+              <span
+                className={styles['panel__collapse']}
+              >
+                {<AiOutlineDrag />}
+              </span>
+            }
+
             {panel.collapsible &&
               <span
                 onClick={onCollapse}
