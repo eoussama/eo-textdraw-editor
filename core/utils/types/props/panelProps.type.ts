@@ -13,4 +13,10 @@ export type TPanelProps = {
    * The ID of the panel
    */
   id: PanelId;
+
+  /**
+   * @description
+   * DOM children, normal a component to be rendered inside of the panel
+   */
+  children?: JSX.Element;
 }

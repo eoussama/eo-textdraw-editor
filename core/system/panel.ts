@@ -3,7 +3,9 @@ import { usePanelStore } from '../store/panel';
 
 import { PanelId } from '../utils/types/union/panelId.type';
 import { TNullable } from '../utils/types/generic/nullable.type';
+
 import { PanelId as PanelIds } from '../utils/enums/panelId.enum';
+import { panelDefinitions } from '../utils/const/panelsDefinitions.const';
 
 
 /**
@@ -22,16 +24,23 @@ export class PanelSystem {
     const setPanels = usePanelStore.getState().setPanels;
     setPanels([]);
 
-    const panelIds = [
-      PanelIds.Left, PanelIds.RightTop, PanelIds.RightBottom,
-      PanelIds.Toolbox, PanelIds.Options, PanelIds.Layers
-    ];
-
-    panelIds.forEach(panelId => this.create({ id: panelId }));
+    // Creating base panels
+    panelDefinitions.forEach(panel => this.create(panel));
 
     this.add(PanelIds.Left, PanelIds.Toolbox);
     this.add(PanelIds.RightTop, PanelIds.Options);
     this.add(PanelIds.RightBottom, PanelIds.Layers);
+  }
+
+  /**
+   * @description
+   * Fetches a panel by ID
+   *
+   * @param panelId The target panel ID
+   */
+  static get(panelId: PanelId): TNullable<Panel> {
+    const panels = usePanelStore.getState().panels;
+    return panels.find(panel => panel.id === panelId) ?? null;
   }
 
   /**
@@ -99,12 +108,31 @@ export class PanelSystem {
 
   /**
    * @description
-   * Fetches a panel by ID
+   * Collapses a panel
    *
-   * @param panelId The target panel ID
+   * @param panelId The ID of the panel to collapse
    */
-  static get(panelId: PanelId): TNullable<Panel> {
-    const panels = usePanelStore.getState().panels;
-    return panels.find(panel => panel.id === panelId) ?? null;
+  static toggleCollapse(panelId: string): void {
+    const panel = this.get(panelId);
+
+    if (panel) {
+      panel.collapsed = !panel.collapsed;
+      this.update(panel);
+    }
+  }
+
+  /**
+   * @description
+   * Closes a panel
+   *
+   * @param panelId The ID of the panel to close
+   */
+  static close(panelId: string): void {
+    const panel = this.get(panelId);
+
+    if (panel) {
+      panel.closed = true;
+      this.update(panel);
+    }
   }
 }
